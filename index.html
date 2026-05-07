@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Briefing nieuwe website, Innovatiepunt KAAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3eee2;
+    --bg-deep: #ece6d6;
+    --ink: #161616;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8682;
+    --rule: #d8d2c2;
+    --rule-soft: #e3ddcd;
+    --kaap-pink: #ea6398;
+    --kaap-purple: #8d73da;
+    --kaap-grad: linear-gradient(135deg, #ea6398 0%, #8d73da 100%);
+    --kaap-grad-soft: linear-gradient(135deg, rgba(234,99,152,0.10) 0%, rgba(141,115,218,0.10) 100%);
+    --maxw: 1280px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.55;
+  }
+  body { scroll-behavior: smooth; padding-bottom: 88px; }
+
+  /* TOP NAV */
+  .topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(243, 238, 226, 0.78);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .brand-pair { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .brand-pair strong { color: var(--ink); font-weight: 700; }
+  .brand-pair .arrow { width: 18px; height: 1px; background: var(--ink-muted); position: relative; }
+  .brand-pair .arrow::after {
+    content: ''; position: absolute; right: -1px; top: -3px;
+    width: 6px; height: 6px; border-right: 1px solid var(--ink-muted);
+    border-top: 1px solid var(--ink-muted); transform: rotate(45deg);
+  }
+  .nav-links { display: flex; gap: 4px; font-size: 13px; }
+  .nav-links a {
+    color: var(--ink-soft); text-decoration: none; padding: 8px 14px;
+    border-radius: 999px; transition: all 160ms ease; font-weight: 500;
+  }
+  .nav-links a:hover { background: var(--bg-deep); color: var(--ink); }
+
+  section {
+    min-height: auto;
+    padding: 96px 48px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  section.tight { min-height: auto; padding: 80px 48px; }
+  .container { max-width: var(--maxw); margin: 0 auto; width: 100%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 20px;
+  }
+  .section-label .num { font-variant-numeric: tabular-nums; color: var(--ink); }
+  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--ink-muted); }
+
+  h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.025em; color: var(--ink); line-height: 1.05; }
+  h1 { font-size: clamp(44px, 6vw, 84px); }
+  h2 { font-size: clamp(32px, 4vw, 54px); }
+  h3 { font-size: clamp(20px, 1.8vw, 24px); letter-spacing: -0.015em; line-height: 1.2; }
+  h4 { font-size: 15px; font-weight: 700; letter-spacing: -0.005em; }
+
+  p { margin: 0; color: var(--ink-soft); font-size: 16px; }
+  .lead { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 780px; }
+
+  .grad-text {
+    background: var(--kaap-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* COVER */
+  .cover { background: var(--bg); overflow: hidden; }
+  .cover-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; align-items: center; }
+  .cover h1 { font-size: clamp(48px, 6.4vw, 92px); line-height: 0.98; }
+  .cover .meta {
+    margin-top: 36px; display: grid; grid-template-columns: repeat(4, auto);
+    gap: 40px; padding-top: 24px; border-top: 1px solid var(--rule);
+  }
+  .cover .meta div { display: flex; flex-direction: column; gap: 6px; }
+  .cover .meta .k { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); font-weight: 600; }
+  .cover .meta .v { font-size: 16px; font-weight: 600; color: var(--ink); }
+
+  .cover-visual { aspect-ratio: 1 / 1; position: relative; display: flex; align-items: center; justify-content: center; max-width: 420px; margin-left: auto; }
+  .cover-mark {
+    position: relative; z-index: 2; width: 86%; height: 86%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cover-mark img,
+  .cover-mark svg { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .cover-mark .logo-ring {
+    transform-origin: 122.5px 122.5px;
+    animation: kaap-spin 32s linear infinite;
+  }
+  @keyframes kaap-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cover-mark .logo-ring { animation: none; }
+  }
+
+  /* USAGE NOTE (only shows on briefing pages) */
+  .usage-note {
+    margin-top: 24px;
+    padding: 14px 20px;
+    background: var(--kaap-grad-soft);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 14px;
+    max-width: 720px;
+  }
+  .usage-note .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--kaap-pink); flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(234,99,152,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(234,99,152,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(234,99,152,0); }
+    100% { box-shadow: 0 0 0 0 rgba(234,99,152,0); }
+  }
+
+  /* DOEL */
+  .doel-grid { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .doel-block h3 { margin-bottom: 12px; }
+  .doel-block p { font-size: 16px; line-height: 1.6; }
+
+  /* AANPAK BANNER */
+  .aanpak-banner {
+    margin-top: 32px; padding: 22px 28px;
+    background: var(--kaap-grad-soft);
+    border-radius: 16px; border: 1px solid var(--rule);
+    display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center;
+  }
+  .aanpak-banner .badge {
+    padding: 10px 16px; background: var(--ink); color: #fff;
+    border-radius: 999px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  }
+  .aanpak-banner p { color: var(--ink); font-weight: 500; font-size: 16px; }
+
+  /* REQUIREMENTS */
+  .req-intro { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: end; margin-bottom: 28px; }
+
+  .critical-banner {
+    margin-top: 20px; margin-bottom: 24px; padding: 20px 24px;
+    background: var(--ink); color: #fff; border-radius: 14px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .critical-banner::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 280px; height: 280px; background: var(--kaap-grad);
+    filter: blur(80px); opacity: 0.4;
+  }
+  .critical-banner > * { position: relative; z-index: 2; }
+  .critical-banner .tag {
+    padding: 6px 12px; background: rgba(255,255,255,0.12); border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #fff;
+  }
+  .critical-banner .body { color: #fff; font-weight: 500; font-size: 16px; }
+  .critical-banner .body strong { font-weight: 700; }
+
+  .req-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    border-radius: 18px; overflow: hidden;
+  }
+  .req-item {
+    background: var(--bg); padding: 26px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: background 180ms ease;
+    position: relative;
+  }
+  .req-item:hover { background: #fff; }
+  .req-item.priority::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--kaap-grad);
+  }
+  .req-num {
+    font-size: 12px; font-weight: 700; color: var(--kaap-purple);
+    letter-spacing: 0.1em; font-variant-numeric: tabular-nums;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .req-num .priority-tag {
+    padding: 3px 8px; background: var(--kaap-grad);
+    color: #fff; border-radius: 4px; font-size: 10px; letter-spacing: 0.12em;
+  }
+  .req-item h3 { font-size: 19px; margin-top: 2px; }
+  .req-item ul, .scope-card ul {
+    list-style: none; padding: 0; margin: 8px 0 0 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  /* SELECTABLE LIST ITEMS */
+  li.selectable {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    padding: 6px 0;
+    border-radius: 6px;
+    transition: background 120ms ease;
+  }
+  li.selectable .item-text {
+    flex: 1;
+    padding-left: 18px;
+    position: relative;
+  }
+  li.selectable .item-text::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 10px; height: 1px;
+    background: var(--ink-muted);
+    transition: all 160ms ease;
+  }
+  li.selectable.must .item-text { color: var(--ink); font-weight: 500; }
+  li.selectable.must .item-text::before { background: var(--kaap-pink); height: 2px; top: 9px; }
+
+  li.selectable[data-state="fase2"] .item-text { color: var(--ink-muted); font-weight: 400; }
+  li.selectable[data-state="fase2"] .item-text::before { background: var(--kaap-purple); opacity: 0.5; }
+  li.selectable[data-state="skip"] .item-text { text-decoration: line-through; color: var(--ink-muted); opacity: 0.55; font-weight: 400; }
+  li.selectable[data-state="skip"] .item-text::before { background: var(--ink-muted); opacity: 0.4; }
+
+  .item-toggle {
+    display: inline-flex;
+    gap: 2px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 8px;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+  .item-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 4px 9px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 6px;
+    transition: all 120ms ease;
+    line-height: 1;
+    min-width: 28px;
+  }
+  .item-toggle button:hover { color: var(--ink); }
+  .item-toggle button.active.t-mvp {
+    background: var(--ink); color: #fff;
+  }
+  .item-toggle button.active.t-f2 {
+    background: var(--kaap-purple); color: #fff;
+  }
+  .item-toggle button.active.t-skip {
+    background: var(--ink-muted); color: #fff;
+  }
+
+  .req-legend {
+    margin-top: 20px; display: flex; gap: 28px; font-size: 13px;
+    color: var(--ink-muted); flex-wrap: wrap;
+  }
+  .req-legend span { display: flex; align-items: center; gap: 8px; }
+  .req-legend .dot { width: 10px; height: 2px; background: var(--ink-muted); }
+  .req-legend .dot.must { background: var(--kaap-pink); }
+
+  /* SCOPE SPLIT (Fase 2 section) */
+  .scope-split { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .scope-card {
+    padding: 28px 26px; border-radius: 18px;
+    display: flex; flex-direction: column;
+  }
+  .scope-card.in {
+    background: var(--ink); color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .scope-card.in::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 320px; height: 320px; background: var(--kaap-grad);
+    filter: blur(80px); opacity: 0.45;
+  }
+  .scope-card.in h3 { color: #fff; }
+  .scope-card.in p { color: rgba(255,255,255,0.7); }
+  .scope-card.in .summary-stats {
+    margin-top: auto; position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .scope-card.in .summary-stats div { display: flex; flex-direction: column; gap: 4px; }
+  .scope-card.in .summary-stats .num {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+    background: var(--kaap-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .scope-card.in .summary-stats .label {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600;
+  }
+  .scope-card.out { background: rgba(255,255,255,0.45); border: 1px solid var(--rule); }
+  .scope-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 18px; padding: 6px 12px;
+    border-radius: 999px; align-self: flex-start;
+    background: rgba(255,255,255,0.12); color: #fff;
+  }
+  .scope-card.out .scope-tag { background: var(--bg-deep); color: var(--ink-soft); }
+  .scope-card h3 { font-size: 26px; margin-bottom: 12px; }
+  .scope-card p { font-size: 14px; margin-bottom: 20px; }
+
+  /* RANDVOORWAARDEN */
+  .voorw-grid {
+    margin-top: 32px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    border-radius: 16px; overflow: hidden;
+  }
+  .voorw-item { background: var(--bg); padding: 22px 26px; }
+  .voorw-item h4 { margin-bottom: 8px; font-size: 16px; }
+  .voorw-item p { font-size: 14px; line-height: 1.55; }
+
+  /* ASK SECTION */
+  .ask-section { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+  .ask-section::before {
+    content: ''; position: absolute; bottom: -200px; left: -100px;
+    width: 600px; height: 600px; background: var(--kaap-grad);
+    filter: blur(120px); opacity: 0.3;
+  }
+  .ask-section .container { position: relative; z-index: 2; }
+  .ask-section h2 { color: #fff; }
+  .ask-section .lead { color: rgba(255,255,255,0.72); margin-top: 28px; }
+  .ask-grid {
+    margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; overflow: hidden;
+  }
+  .ask-item { background: var(--ink); padding: 26px 28px; position: relative; }
+  .ask-num {
+    font-size: 36px; font-weight: 800;
+    background: var(--kaap-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ask-item h4 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+  .ask-item p { color: rgba(255,255,255,0.65); font-size: 14px; }
+
+  .vragen-list {
+    margin-top: 36px; list-style: none; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px;
+  }
+  .vragen-list li {
+    color: rgba(255,255,255,0.75); font-size: 14px;
+    padding: 12px 40px 12px 24px; position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    transition: opacity 180ms ease;
+  }
+  .vragen-list li::before {
+    content: '?'; position: absolute; left: 0; top: 12px;
+    color: var(--kaap-pink); font-weight: 700; font-size: 14px;
+  }
+  .vragen-list .q-remove {
+    appearance: none;
+    border: 0;
+    background: rgba(255,255,255,0.06);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; line-height: 1;
+    font-family: inherit;
+    transition: all 140ms ease;
+    opacity: 0;
+  }
+  .vragen-list li:hover .q-remove { opacity: 1; }
+  .vragen-list .q-remove:hover { background: rgba(234,99,152,0.25); color: #fff; }
+  .vragen-list .q-remove.restore { opacity: 1; background: rgba(141,115,218,0.25); color: rgba(255,255,255,0.85); }
+  .vragen-list li[data-removed="true"] { opacity: 0.32; }
+  .vragen-list li[data-removed="true"] .q-text { text-decoration: line-through; }
+  body.view-mode .vragen-list li[data-removed="true"] { display: none; }
+  body.view-mode .vragen-list .q-remove { display: none !important; }
+
+  /* FOOTER */
+  .footer { padding: 48px 48px 64px; background: var(--bg); border-top: 1px solid var(--rule); }
+  .footer-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: end;
+  }
+  .footer h4 { margin-bottom: 8px; }
+  .footer p { font-size: 14px; }
+  .footer .right { text-align: right; font-size: 13px; color: var(--ink-muted); }
+
+  /* ACTION BAR (fixed bottom) */
+  .action-bar {
+    position: fixed;
+    bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 60;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 100px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
+    padding: 8px 8px 8px 28px;
+    display: flex; align-items: center; gap: 28px;
+    max-width: calc(100% - 32px);
+  }
+  .ab-counters {
+    display: flex; gap: 22px;
+    font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500;
+    white-space: nowrap;
+  }
+  .ab-counters .group { display: flex; align-items: center; gap: 8px; }
+  .ab-counters .num {
+    font-weight: 800; color: #fff; font-size: 18px;
+    font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .ab-counters .group.mvp .num { color: var(--kaap-pink); }
+  .ab-counters .group.f2 .num { color: var(--kaap-purple); }
+  .ab-counters .group.skip .num { color: rgba(255,255,255,0.4); }
+  .ab-actions { display: flex; gap: 6px; }
+  .ab-actions button {
+    appearance: none;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 140ms ease;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ab-actions button:hover { background: rgba(255,255,255,0.16); }
+  .ab-actions button.primary {
+    background: var(--kaap-grad);
+    color: #fff;
+  }
+  .ab-actions button.primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(234,99,152,0.4); }
+  .ab-actions button svg { width: 14px; height: 14px; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(20,20,20,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+  }
+  .modal-header {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .modal-header h3 { font-size: 20px; }
+  .modal-header p { font-size: 13px; margin-top: 4px; }
+  .modal-close {
+    appearance: none; border: 0; background: transparent;
+    width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; font-size: 22px; line-height: 1;
+    color: var(--ink-soft); transition: all 120ms ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { background: var(--bg-deep); color: var(--ink); }
+  .modal-body { padding: 24px 28px; overflow-y: auto; flex: 1; }
+  .modal-body textarea {
+    width: 100%;
+    min-height: 360px;
+    padding: 18px;
+    font-family: 'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    resize: vertical;
+  }
+  .modal-footer {
+    padding: 18px 28px;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 10px; justify-content: flex-end;
+    background: var(--bg-deep);
+  }
+  .modal-footer button {
+    appearance: none; border: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 8px;
+    transition: all 140ms ease;
+  }
+  .modal-footer button:hover { background: #fff; }
+  .modal-footer button.primary {
+    background: var(--ink); color: #fff; border-color: var(--ink);
+  }
+  .modal-footer button.primary:hover { background: #000; }
+
+  .toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 240ms ease;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    section { padding: 100px 28px 60px; }
+    .topnav-inner { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .cover-grid { grid-template-columns: 1fr; gap: 48px; }
+    .cover-visual { max-width: 320px; aspect-ratio: 1/1; }
+    .cover .meta { grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+    .doel-grid, .req-intro, .scope-split, .voorw-grid, .ask-grid, .vragen-list, .footer-inner { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr; gap: 1px; }
+    .aanpak-banner { grid-template-columns: 1fr; gap: 16px; }
+    .critical-banner { grid-template-columns: 1fr; gap: 16px; }
+    .footer .right { text-align: left; }
+    .scope-card.in .summary-stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    h1 { font-size: 44px; }
+
+    .action-bar { padding: 8px 8px 8px 18px; gap: 14px; }
+    .ab-counters { gap: 12px; font-size: 11px; }
+    .ab-counters .num { font-size: 15px; }
+    .ab-actions button { padding: 10px 14px; font-size: 12px; }
+    .ab-actions button:not(.primary) span { display: none; }
+  }
+  @media (max-width: 560px) {
+    section { padding: 90px 20px 50px; }
+    .cover .meta { grid-template-columns: 1fr; }
+    h1 { font-size: 38px; }
+    h2 { font-size: 32px; }
+    .scope-card { padding: 24px; }
+    .req-item { padding: 24px 20px; }
+    li.selectable { flex-direction: column; align-items: stretch; gap: 8px; }
+    .item-toggle { align-self: flex-start; }
+  }
+
+  /* VIEW MODE (locked version sent to Nedbase) */
+  body.view-mode { padding-bottom: 0; }
+  body.view-mode .action-bar,
+  body.view-mode .item-toggle,
+  body.view-mode .usage-note,
+  body.view-mode #btn-export,
+  body.view-mode #btn-reset { display: none !important; }
+  body.view-mode li.selectable[data-state="skip"] { display: none; }
+  body.view-mode li.selectable[data-state="fase2"] .item-text::after {
+    content: "Fase 2";
+    margin-left: 10px;
+    padding: 2px 8px;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(141, 115, 218, 0.16);
+    color: var(--kaap-purple);
+    border-radius: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .view-banner {
+    position: fixed;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    padding: 8px 20px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    max-width: calc(100% - 24px);
+  }
+  .view-banner .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--kaap-pink);
+    box-shadow: 0 0 0 0 rgba(234,99,152,0.5);
+    animation: pulse 2s infinite;
+  }
+  body.view-mode .view-banner { display: inline-flex; }
+
+  /* PRINT */
+  @page { size: A4 landscape; margin: 0; }
+  @media print {
+    body { padding-bottom: 0; }
+    .topnav, .action-bar, .toast, .item-toggle, .usage-note, .view-banner { display: none !important; }
+    section { min-height: 100vh; page-break-after: always; page-break-inside: avoid; padding: 60px 48px; }
+    section:last-child { page-break-after: auto; }
+    body { background: var(--bg); }
+    .req-item:hover { background: var(--bg); }
+    li.selectable[data-state="skip"] { display: none; }
+    li.selectable[data-state="fase2"] .item-text::after {
+      content: " [Fase 2]";
+      color: var(--kaap-purple);
+      font-weight: 600;
+      font-size: 0.85em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand-pair">
+      <span><strong>Innovatiepunt KAAP</strong></span>
+      <span class="arrow"></span>
+      <span>briefing voor Nedbase</span>
+    </div>
+    <div class="nav-links">
+      <a href="#context">Context</a>
+      <a href="#aanpak">Aanpak</a>
+      <a href="#mvp">MVP-eisen</a>
+      <a href="#fase2">Fase 2</a>
+      <a href="#randvoorwaarden">Randvoorwaarden</a>
+      <a href="#vraag">Wat we vragen</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div class="container">
+    <div class="cover-grid">
+      <div>
+        <div class="section-label"><span class="num">Briefing</span></div>
+        <h1>Nieuwe website<br/><span class="grad-text">Innovatiepunt KAAP.</span></h1>
+        <p class="lead" style="margin-top: 32px;">
+          Concrete uitvraag voor de bouw van de nieuwe KAAP-website. Dit document beschrijft wat er minimaal in de eerste live versie moet zitten, wat er daarna volgt en wat we van Nedbase terug verwachten.
+        </p>
+        <div class="usage-note">
+          <span class="pulse"></span>
+          <span><strong style="color:var(--ink); font-weight:600;">Werkdocument.</strong> Per item kun je hieronder kiezen tussen MVP, Fase 2 of Niet doen. Onderin de pagina zie je de stand. Met "Exporteer" maak je een tekstoverzicht voor Nedbase.</span>
+        </div>
+        <div class="meta">
+          <div><span class="k">Voor</span><span class="v">Nedbase</span></div>
+          <div><span class="k">Van</span><span class="v">Innovatiepunt KAAP</span></div>
+          <div><span class="k">Aanpak</span><span class="v">MVP, daarna doorontwikkeling</span></div>
+          <div><span class="k">Status</span><span class="v">Uitvraag</span></div>
+        </div>
+      </div>
+      <div class="cover-visual">
+        <div class="cover-mark">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 245 245" role="img" aria-label="Innovatiepunt KAAP">
+            <defs>
+              <linearGradient id="kaapGrad" x1="175.5" y1="-41.18" x2="-54.35" y2="188.68" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#ea6398"/>
+                <stop offset="1" stop-color="#8d73da"/>
+              </linearGradient>
+              <linearGradient id="kaapGrad2" x1="262.72" y1="46.04" x2="32.86" y2="275.9" xlink:href="#kaapGrad"/>
+              <linearGradient id="kaapGrad3" x1="244.15" y1="27.48" x2="14.3" y2="257.33" xlink:href="#kaapGrad"/>
+            </defs>
+            <g class="logo-ring">
+              <path fill="url(#kaapGrad)" d="M48.42,122.5c0-40.66,32.96-73.62,73.62-73.62,7.97,0,15.65,1.27,22.84,3.61l24.77-42.9C155,3.42,138.92,0,122.03,0,59.52,0,7.94,46.83.47,107.32l49.17,28.57c-.8-4.34-1.22-8.82-1.22-13.39Z"/>
+              <path fill="url(#kaapGrad2)" d="M195.96,24.81l-49.31,28.29c28.55,10.12,49,37.37,49,69.4,0,21.75-9.43,41.29-24.42,54.76l24.77,42.9c29.49-22.37,48.54-57.79,48.54-97.66s-19.06-75.32-48.58-97.69Z"/>
+              <path fill="url(#kaapGrad3)" d="M49.99,137.73H.47c7.5,60.47,59.07,107.27,121.56,107.27,16.9,0,32.99-3.42,47.64-9.61l.15-56.9c-12.86,10.99-29.55,17.62-47.79,17.62-35.44,0-65.03-25.04-72.04-58.39Z"/>
+            </g>
+            <g class="logo-mark">
+              <polygon fill="#232323" points="150.73 135.7 144.85 135.7 136.94 117.01 129.03 135.7 118.22 135.7 110.31 117.01 102.4 135.7 90.83 135.7 83.56 124.92 78.92 124.92 78.92 135.7 73.87 135.7 73.87 110.18 78.92 110.18 78.92 120.1 83.54 120.1 90.55 110.18 96.7 110.18 87.8 122.46 96.72 135.23 107.64 110.18 113.09 110.18 123.63 134.6 134.27 110.18 139.72 110.18 150.73 135.7"/>
+              <path fill="#232323" d="M152.16,135.7v-25.52h13.91c4.86,0,8.26,3.86,8.26,8.65,0,4.77-3.48,8.75-8.26,8.75h-8.85s0,8.13,0,8.13h-5.05ZM165.83,122.82c2.52,0,3.95-2.85,3.15-5.47-.4-1.34-1.96-2.41-3.36-2.41h-8.42v7.88s8.62,0,8.62,0Z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section id="context">
+  <div class="container">
+    <div class="section-label"><span class="num">01</span> Context</div>
+    <h2>Waarom we een<br/>nieuwe website willen.</h2>
+    <div class="doel-grid">
+      <div class="doel-block">
+        <h3>Waar we nu staan</h3>
+        <p>De huidige website bevat veel informatie, maar is voornamelijk tekstueel ingericht. Er ontbreekt een duidelijke strategie en een logische klantreis per doelgroep. Bezoekers begrijpen niet snel wat KAAP te bieden heeft of waar ze moeten beginnen. De huidige technische opzet maakt het bovendien lastig om diensten en faciliteiten visueel weer te geven of nieuwe functionaliteiten te integreren.</p>
+      </div>
+      <div class="doel-block">
+        <h3>Waar we naartoe willen</h3>
+        <p>Een heldere, visuele en strategisch opgebouwde website die bezoekers begeleidt, het aanbod per doelgroep duidelijk communiceert en meegroeit met KAAP. Met integratie van Bisner voor events en boekbare ruimtes, eenvoudig te beheren via een CMS, en een technisch fundament dat ruimte laat voor doorontwikkeling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AANPAK -->
+<section id="aanpak" style="background: var(--bg-deep);">
+  <div class="container">
+    <div class="section-label"><span class="num">02</span> Onze aanpak</div>
+    <h2>MVP eerst,<br/>doorontwikkeling daarna.</h2>
+    <p class="lead" style="margin-top: 20px;">
+      We willen niet eerst maandenlang ontwerpen voordat er iets live staat. We willen zo snel mogelijk een werkende basisversie van de site live, met de meest kritische functionaliteit erin. Daarna bouwen we gericht door, op basis van wat we in de praktijk zien gebeuren en wat het team in beheer tegenkomt.
+    </p>
+    <div class="aanpak-banner">
+      <span class="badge">Concreet</span>
+      <p>De MVP is geen tussenoplossing of demo. Het is een complete, werkende website die de huidige site volledig kan vervangen. Daarna volgt doorontwikkeling, niet een tweede project.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MVP REQUIREMENTS -->
+<section id="mvp">
+  <div class="container">
+    <div class="section-label"><span class="num">03</span> MVP, dit moet erin</div>
+    <div class="req-intro">
+      <h2>De minimale<br/>live-versie.</h2>
+      <p class="lead">
+        Zes blokken die samen genoeg zijn om de huidige website te vervangen. Wat hieronder staat is geen wensenlijst, maar de ondergrens voor livegang. De Bisner-integratie is daarvan het hardst, zonder die functionaliteit is de MVP niet bruikbaar.
+      </p>
+    </div>
+
+    <div class="critical-banner">
+      <span class="tag">Kritisch voor livegang</span>
+      <p class="body"><strong>Bisner-integratie</strong> is een harde voorwaarde voor de MVP. Zonder werkende koppeling met Bisner voor events en boekbare ruimtes is de website niet live-waardig, ongeacht de rest van de scope.</p>
+    </div>
+
+    <div class="req-grid" data-default="mvp">
+      <div class="req-item priority">
+        <span class="req-num">01 / Bisner-integratie <span class="priority-tag">Kritisch</span></span>
+        <h3>Bisner-koppeling</h3>
+        <ul>
+          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Events automatisch tonen vanuit Bisner</span></li>
+          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Boekbare ruimtes zichtbaar op de site</span></li>
+          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Doorklikken naar Bisner voor inschrijving en boeking</span></li>
+          <li class="selectable" data-cat="Bisner-koppeling"><span class="item-text">Realtime of dagelijks gesynchroniseerd, voorstel van jullie</span></li>
+          <li class="selectable" data-cat="Bisner-koppeling"><span class="item-text">Foutafhandeling als Bisner-API tijdelijk niet bereikbaar is</span></li>
+        </ul>
+      </div>
+
+      <div class="req-item">
+        <span class="req-num">02 / Structuur</span>
+        <h3>Basispagina's</h3>
+        <ul>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Homepage</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Over De KAAP</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Programma's en activiteiten</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Faciliteiten</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Contact</span></li>
+        </ul>
+      </div>
+
+      <div class="req-item">
+        <span class="req-num">03 / Positionering</span>
+        <h3>Content per doelgroep</h3>
+        <ul>
+          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Heldere uitleg van wat KAAP is</span></li>
+          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Structuur per doelgroep, "Ik wil..."-ingang</span></li>
+          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Visuele presentatie, geen tekstsite meer</span></li>
+          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen thema's Energy, Food, Water</span></li>
+          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen diensten faciliteren, bewustwording, verbinden</span></li>
+        </ul>
+      </div>
+
+      <div class="req-item">
+        <span class="req-num">04 / UX</span>
+        <h3>Navigatie en klantreis</h3>
+        <ul>
+          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Logische sitestructuur, max drie klikken naar elke pagina</span></li>
+          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Duidelijke klantreis per doelgroep</span></li>
+          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Heldere call-to-actions per pagina</span></li>
+          <li class="selectable" data-cat="Navigatie en klantreis"><span class="item-text">Hero-sectie met snelle ingangen op basis van behoefte</span></li>
+        </ul>
+      </div>
+
+      <div class="req-item">
+        <span class="req-num">05 / CMS</span>
+        <h3>Beheer en redactie</h3>
+        <ul>
+          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Content eenvoudig aanpasbaar zonder technische kennis</span></li>
+          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Pagina's zelfstandig kunnen toevoegen</span></li>
+          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Rollen en rechten, onderscheid medewerker en stagiair</span></li>
+          <li class="selectable" data-cat="Beheer en redactie"><span class="item-text">Mediabibliotheek met afbeeldingsbeheer</span></li>
+          <li class="selectable" data-cat="Beheer en redactie"><span class="item-text">Revisiegeschiedenis op pagina-niveau</span></li>
+        </ul>
+      </div>
+
+      <div class="req-item">
+        <span class="req-num">06 / Techniek</span>
+        <h3>Technisch fundament</h3>
+        <ul>
+          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Volledig responsive, 360px tot desktop</span></li>
+          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Basis-SEO, metadata, sitemap, structured data</span></li>
+          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Analytics-koppeling, Google Analytics en Search Console</span></li>
+          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">SEO-migratie van bestaande URL's</span></li>
+          <li class="selectable" data-cat="Technisch fundament"><span class="item-text">Hosting, back-ups en monitoring meegenomen in voorstel</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="req-legend">
+      <span><span class="dot must"></span>Voorgesteld als harde eis</span>
+      <span><span class="dot"></span>Sterk gewenst, te bespreken</span>
+    </div>
+  </div>
+</section>
+
+<!-- IN SCOPE / OUT OF SCOPE -->
+<section id="fase2" style="background: var(--bg-deep);">
+  <div class="container">
+    <div class="section-label"><span class="num">04</span> Scope-afbakening</div>
+    <h2>Wat schuift bewust<br/>door naar Fase 2.</h2>
+    <p class="lead" style="margin-top: 20px;">
+      Onderdelen die we bewust niet in de MVP doen, maar wel willen oppakken na livegang. Wil je een item toch in de MVP? Zet 'm op MVP, dan gaat 'ie mee in de uitvraag.
+    </p>
+
+    <div class="scope-split">
+      <div class="scope-card in">
+        <span class="scope-tag">Live overzicht</span>
+        <h3>Stand van<br/>de scope.</h3>
+        <p>Telt automatisch mee als je hierboven of hieronder iets verschuift.</p>
+        <div class="summary-stats">
+          <div>
+            <span class="num" id="stat-mvp">0</span>
+            <span class="label">In MVP</span>
+          </div>
+          <div>
+            <span class="num" id="stat-f2">0</span>
+            <span class="label">In Fase 2</span>
+          </div>
+          <div>
+            <span class="num" id="stat-skip">0</span>
+            <span class="label">Geschrapt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-card out" data-default="fase2">
+        <span class="scope-tag">Fase 2, na livegang</span>
+        <h3>Doorontwikkeling</h3>
+        <p>Op basis van gebruik, feedback en nieuwe wensen na livegang.</p>
+        <ul>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Verdiepende content per doelgroep en thema</span></li>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Extra functionaliteiten, intake-flows, formulieren</span></li>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Aanvullende integraties, bijvoorbeeld HubSpot</span></li>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Aansluiting op nieuwe Dockwize-website</span></li>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">UX-optimalisatie op basis van analytics</span></li>
+          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Doorontwikkeling op basis van praktijksignalen</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RANDVOORWAARDEN -->
+<section id="randvoorwaarden">
+  <div class="container">
+    <div class="section-label"><span class="num">05</span> Randvoorwaarden</div>
+    <h2>Wat we van het<br/>eindproduct verwachten.</h2>
+    <p class="lead" style="margin-top: 20px;">
+      Onafhankelijk van de gekozen tech-stack of bouwwijze, dit zijn de uitgangspunten waar de website aan moet voldoen.
+    </p>
+
+    <div class="voorw-grid">
+      <div class="voorw-item">
+        <h4>Overdraagbaarheid</h4>
+        <p>De site en het CMS moeten op termijn ook door een andere partij beheerd en doorontwikkeld kunnen worden. KAAP wil niet vastzitten aan één leverancier of één persoon.</p>
+      </div>
+      <div class="voorw-item">
+        <h4>Documentatie</h4>
+        <p>Heldere documentatie van de techniek, het CMS en de Bisner-koppeling. Inclusief korte gebruiksinstructie voor het redactieteam.</p>
+      </div>
+      <div class="voorw-item">
+        <h4>Performance en SEO</h4>
+        <p>Snelle laadtijden op mobiel en desktop, goede Core Web Vitals, en SEO-migratie zodat huidige posities behouden blijven.</p>
+      </div>
+      <div class="voorw-item">
+        <h4>Eigendom</h4>
+        <p>KAAP is eigenaar van de broncode, de inhoud en de hosting-toegang. Bij een eventuele leverancierswissel wordt alles overdraagbaar opgeleverd.</p>
+      </div>
+      <div class="voorw-item">
+        <h4>Aansluiting Dockwize</h4>
+        <p>De nieuwe Dockwize-website is ook bij jullie in ontwikkeling. De KAAP-site moet zelfstandig kunnen functioneren, maar de bouwwijze moet latere afstemming met de Dockwize-site mogelijk maken op het gebied van terminologie, structuur en beheerervaring.</p>
+      </div>
+      <div class="voorw-item">
+        <h4>Huisstijl</h4>
+        <p>De site wordt gebouwd in de bestaande KAAP-huisstijl (Nilsson Agency, 2024). Het huisstijlhandboek en de logo-set worden aangeleverd.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VRAAG AAN NEDBASE -->
+<section id="vraag" class="ask-section">
+  <div class="container">
+    <div class="section-label" style="color: rgba(255,255,255,0.5);"><span class="num" style="color: #fff;">06</span> Wat we van jullie vragen</div>
+    <h2>Op basis hiervan,<br/>graag terugkoppeling op<br/><span class="grad-text">vier punten.</span></h2>
+    <p class="lead">
+      Geen open offerte-aanvraag, maar een concrete reactie op de scope hierboven. Dat geeft ons direct een vergelijkbaar beeld en voorkomt heen-en-weer over uitgangspunten.
+    </p>
+
+    <div class="ask-grid">
+      <div class="ask-item">
+        <div class="ask-num">01</div>
+        <h4>Prijsindicatie MVP</h4>
+        <p>Wat kost het om de MVP zoals hierboven omschreven te bouwen en live te zetten, exclusief btw, inclusief Bisner-integratie.</p>
+      </div>
+      <div class="ask-item">
+        <div class="ask-num">02</div>
+        <h4>Doorlooptijd MVP</h4>
+        <p>Vanaf akkoord tot livegang, in weken. Inclusief beoogde livegang-datum en welke aannames daaraan ten grondslag liggen.</p>
+      </div>
+      <div class="ask-item">
+        <div class="ask-num">03</div>
+        <h4>Indicatie Fase 2</h4>
+        <p>Een richtprijs of bandbreedte voor doorontwikkeling, en hoe jullie die werkwijze normaal inrichten, bijvoorbeeld via een uurbudget per maand of per sprint.</p>
+      </div>
+      <div class="ask-item">
+        <div class="ask-num">04</div>
+        <h4>Hosting en beheer</h4>
+        <p>Maandelijks bedrag voor hosting, technisch onderhoud, security-updates en monitoring na livegang. Inclusief wat daarbinnen valt.</p>
+      </div>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 80px; margin-bottom: 28px; font-size: 22px;">En graag ook antwoord op</h3>
+    <ul class="vragen-list" id="vragen-list">
+      <li><span class="q-text">Welke tech-stack stellen jullie voor en waarom past die bij deze scope</span></li>
+      <li><span class="q-text">Welk CMS, en waarom geschikt voor een redactieteam met wisselende ervaring</span></li>
+      <li><span class="q-text">Hoe pakken jullie de Bisner-integratie technisch aan</span></li>
+      <li><span class="q-text">Hoe verloopt de SEO-migratie van de bestaande URL's</span></li>
+      <li><span class="q-text">Wie is de vaste contactpersoon en het projectteam</span></li>
+      <li><span class="q-text">Welke input verwachten jullie van KAAP en op welk moment</span></li>
+      <li><span class="q-text">Hoe wordt eigenaarschap van code, content en toegangen geregeld</span></li>
+      <li><span class="q-text">Wat is de garantie- en supportregeling na livegang</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Contact</h4>
+      <p>Jorik Schut<br/>Innovatiepunt KAAP</p>
+    </div>
+    <div>
+      <h4>Reactie graag voor</h4>
+      <p>Datum in te vullen<br/>Per mail of in een vervolggesprek</p>
+    </div>
+    <div class="right">
+      Briefing nieuwe website<br/>
+      Innovatiepunt KAAP, 2026
+    </div>
+  </div>
+</footer>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <div class="ab-counters">
+    <div class="group mvp"><span class="num" id="ab-mvp">0</span><span>MVP</span></div>
+    <div class="group f2"><span class="num" id="ab-f2">0</span><span>Fase 2</span></div>
+    <div class="group skip"><span class="num" id="ab-skip">0</span><span>Geschrapt</span></div>
+  </div>
+  <div class="ab-actions">
+    <button id="btn-reset" title="Alle keuzes terug naar default">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
+      <span>Reset</span>
+    </button>
+    <button id="btn-export" class="primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+      <span>Versie voor Nedbase</span>
+    </button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Gekopieerd</div>
+
+<div class="view-banner" id="view-banner">
+  <span class="dot"></span>
+  <span id="view-banner-text">Vastgestelde scope</span>
+</div>
+
+<script>
+  const STORAGE_KEY = 'kaap-briefing-selection-v1';
+  const VIEW_MODE = !!window.__BAKED_STATE__;
+
+  function slug(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
+  }
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    if (VIEW_MODE) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  let state = VIEW_MODE ? (window.__BAKED_STATE__ || {}) : loadState();
+
+  if (VIEW_MODE) {
+    document.body.classList.add('view-mode');
+    if (window.__BAKED_DATE__) {
+      document.getElementById('view-banner-text').textContent =
+        'Vastgestelde scope, ' + window.__BAKED_DATE__;
+    }
+  }
+
+  // Wire up the removable questions list
+  document.querySelectorAll('#vragen-list li').forEach((li, idx) => {
+    const text = li.querySelector('.q-text').textContent.trim();
+    const id = 'vraag__' + idx + '__' + slug(text);
+    li.dataset.id = id;
+
+    const initiallyRemoved = state[id] === 'removed';
+    if (initiallyRemoved) li.dataset.removed = 'true';
+
+    if (VIEW_MODE) return;
+
+    const btn = document.createElement('button');
+    btn.className = 'q-remove';
+    btn.type = 'button';
+    btn.title = initiallyRemoved ? 'Vraag terugzetten' : 'Vraag verwijderen';
+    btn.innerHTML = initiallyRemoved ? '+' : '&times;';
+    if (initiallyRemoved) btn.classList.add('restore');
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isRemoved = li.dataset.removed === 'true';
+      if (isRemoved) {
+        delete li.dataset.removed;
+        delete state[id];
+        btn.innerHTML = '&times;';
+        btn.title = 'Vraag verwijderen';
+        btn.classList.remove('restore');
+      } else {
+        li.dataset.removed = 'true';
+        state[id] = 'removed';
+        btn.innerHTML = '+';
+        btn.title = 'Vraag terugzetten';
+        btn.classList.add('restore');
+      }
+      saveState(state);
+    });
+    li.appendChild(btn);
+  });
+
+  // Build items + toggles
+  const items = [];
+
+  document.querySelectorAll('[data-default]').forEach(group => {
+    const def = group.dataset.default;
+    group.querySelectorAll('li.selectable').forEach(li => {
+      const text = li.querySelector('.item-text').textContent.trim();
+      const cat = li.dataset.cat || 'Overig';
+      const id = slug(cat) + '__' + slug(text);
+      li.dataset.id = id;
+      li.dataset.default = def;
+
+      items.push({el: li, id, cat, text, defaultState: def});
+
+      const initial = state[id] || def;
+      li.dataset.state = initial;
+
+      if (VIEW_MODE) return;
+
+      const toggle = document.createElement('div');
+      toggle.className = 'item-toggle';
+      toggle.innerHTML = `
+        <button class="t-mvp" data-set="mvp" title="In MVP">MVP</button>
+        <button class="t-f2" data-set="fase2" title="Naar Fase 2">F2</button>
+        <button class="t-skip" data-set="skip" title="Niet doen">&mdash;</button>
+      `;
+      li.appendChild(toggle);
+
+      const btns = toggle.querySelectorAll('button');
+      btns.forEach(b => {
+        if (b.dataset.set === initial) b.classList.add('active');
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          const newState = b.dataset.set;
+          li.dataset.state = newState;
+          state[id] = newState;
+          saveState(state);
+          btns.forEach(other => other.classList.toggle('active', other === b));
+          updateCounters();
+        });
+      });
+    });
+  });
+
+  function updateCounters() {
+    let mvp = 0, f2 = 0, skip = 0;
+    items.forEach(it => {
+      const s = it.el.dataset.state;
+      if (s === 'mvp') mvp++;
+      else if (s === 'fase2') f2++;
+      else if (s === 'skip') skip++;
+    });
+    const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+    set('ab-mvp', mvp); set('ab-f2', f2); set('ab-skip', skip);
+    set('stat-mvp', mvp); set('stat-f2', f2); set('stat-skip', skip);
+  }
+  updateCounters();
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  if (!VIEW_MODE) {
+    // Reset
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if (!confirm('Alle keuzes terugzetten naar de oorspronkelijke voorstellen?')) return;
+      state = {};
+      saveState(state);
+      items.forEach(it => {
+        it.el.dataset.state = it.defaultState;
+        const btns = it.el.querySelectorAll('.item-toggle button');
+        btns.forEach(b => b.classList.toggle('active', b.dataset.set === it.defaultState));
+      });
+      document.querySelectorAll('#vragen-list li').forEach(li => {
+        delete li.dataset.removed;
+        const btn = li.querySelector('.q-remove');
+        if (btn) {
+          btn.innerHTML = '&times;';
+          btn.title = 'Vraag verwijderen';
+          btn.classList.remove('restore');
+        }
+      });
+      updateCounters();
+    });
+
+    // Build the shareable HTML for Nedbase
+    document.getElementById('btn-export').addEventListener('click', () => {
+      // Clean current state object to a compact dict
+      const stateDict = {};
+      items.forEach(it => { stateDict[it.id] = it.el.dataset.state; });
+      document.querySelectorAll('#vragen-list li').forEach(li => {
+        if (li.dataset.removed === 'true') stateDict[li.dataset.id] = 'removed';
+      });
+
+      const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      // Clone and strip live DOM helpers before serializing
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelectorAll('.item-toggle, .q-remove').forEach(el => el.remove());
+
+      const stateScript =
+        '<scr' + 'ipt>window.__BAKED_STATE__=' + JSON.stringify(stateDict) +
+        ';window.__BAKED_DATE__=' + JSON.stringify(today) + ';</scr' + 'ipt>';
+
+      let html = '<!DOCTYPE html>\n' + clone.outerHTML;
+      html = html.replace(/<script>/, stateScript + '\n<script>');
+
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const d = new Date();
+      const stamp = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      a.href = url;
+      a.download = `KAAP-briefing-Nedbase-${stamp}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('Bestand opgeslagen voor Nedbase');
+    });
+  }
+</script>
+
+</body>
+</html>
