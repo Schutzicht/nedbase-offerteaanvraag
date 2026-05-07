@@ -583,18 +583,18 @@
 
   /* RESPONSIVE */
   @media (max-width: 980px) {
-    section { padding: 100px 28px 60px; }
+    section { padding: 88px 28px 56px; }
     .topnav-inner { padding: 12px 20px; }
     .nav-links { display: none; }
-    .cover-grid { grid-template-columns: 1fr; gap: 48px; }
-    .cover-visual { max-width: 320px; aspect-ratio: 1/1; }
-    .cover .meta { grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+    .cover-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cover-visual { max-width: 280px; aspect-ratio: 1/1; }
+    .cover .meta { grid-template-columns: 1fr 1fr; gap: 24px 36px; }
     .doel-grid, .req-intro, .scope-split, .voorw-grid, .ask-grid, .vragen-list, .footer-inner { grid-template-columns: 1fr; }
     .req-grid { grid-template-columns: 1fr; gap: 1px; }
-    .aanpak-banner { grid-template-columns: 1fr; gap: 16px; }
-    .critical-banner { grid-template-columns: 1fr; gap: 16px; }
+    .aanpak-banner { grid-template-columns: 1fr; gap: 14px; }
+    .critical-banner { grid-template-columns: 1fr; gap: 14px; padding: 18px 22px; }
     .footer .right { text-align: left; }
-    .scope-card.in .summary-stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .scope-card.in .summary-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     h1 { font-size: 44px; }
 
     .action-bar { padding: 8px 8px 8px 18px; gap: 14px; }
@@ -602,16 +602,111 @@
     .ab-counters .num { font-size: 15px; }
     .ab-actions button { padding: 10px 14px; font-size: 12px; }
     .ab-actions button:not(.primary) span { display: none; }
+
+    .vragen-list .q-remove { opacity: 1; }
   }
-  @media (max-width: 560px) {
-    section { padding: 90px 20px 50px; }
-    .cover .meta { grid-template-columns: 1fr; }
-    h1 { font-size: 38px; }
-    h2 { font-size: 32px; }
-    .scope-card { padding: 24px; }
-    .req-item { padding: 24px 20px; }
-    li.selectable { flex-direction: column; align-items: stretch; gap: 8px; }
+  @media (max-width: 640px) {
+    section { padding: 76px 18px 44px; }
+    section.tight { padding: 60px 18px; }
+
+    .topnav-inner { padding: 10px 16px; gap: 8px; }
+    .brand-pair { font-size: 11px; gap: 8px; }
+    .brand-pair .arrow { width: 14px; }
+    .brand-pair span:last-child { display: none; }
+    .brand-pair .arrow { display: none; }
+
+    .cover h1 { font-size: clamp(34px, 9vw, 46px); }
+    .cover-visual { max-width: 220px; }
+    .cover .meta { grid-template-columns: 1fr; gap: 16px; padding-top: 20px; margin-top: 24px; }
+    .cover .meta .v { font-size: 14px; }
+    .usage-note { font-size: 12px; padding: 12px 16px; gap: 12px; }
+
+    .section-label { margin-bottom: 16px; font-size: 11px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: clamp(26px, 7vw, 34px); }
+    h3 { font-size: 18px; }
+    .lead { font-size: 15px; line-height: 1.5; }
+
+    .doel-grid { gap: 24px; margin-top: 24px; }
+    .doel-block p { font-size: 15px; }
+
+    .aanpak-banner { padding: 16px 18px; }
+    .aanpak-banner .badge { padding: 7px 12px; font-size: 11px; }
+    .aanpak-banner p { font-size: 14px; }
+
+    .req-intro { gap: 20px; margin-bottom: 16px; }
+    .critical-banner { margin-top: 16px; margin-bottom: 18px; padding: 16px 18px; gap: 12px; }
+    .critical-banner .body { font-size: 14px; }
+    .critical-banner .tag { font-size: 10px; padding: 4px 10px; }
+    .critical-banner::before { width: 200px; height: 200px; }
+
+    .req-item { padding: 22px 18px; gap: 10px; }
+    .req-num { font-size: 11px; gap: 6px; flex-wrap: wrap; }
+    .req-item h3 { font-size: 17px; }
+
+    li.selectable { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 0; }
     .item-toggle { align-self: flex-start; }
+    .item-toggle button { padding: 6px 12px; min-width: 36px; font-size: 11px; }
+
+    .req-legend { gap: 16px 20px; font-size: 12px; }
+
+    .scope-split { gap: 18px; margin-top: 24px; }
+    .scope-card { padding: 22px 20px; }
+    .scope-card h3 { font-size: 22px; }
+    .scope-card p { font-size: 14px; margin-bottom: 16px; }
+    .scope-card .scope-tag { font-size: 10px; padding: 5px 10px; margin-bottom: 14px; }
+    .scope-card.in .summary-stats { gap: 10px; padding-top: 18px; }
+    .scope-card.in .summary-stats .num { font-size: 26px; }
+    .scope-card.in .summary-stats .label { font-size: 9px; letter-spacing: 0.1em; }
+
+    .voorw-grid { margin-top: 24px; }
+    .voorw-item { padding: 18px 20px; }
+    .voorw-item h4 { font-size: 15px; }
+    .voorw-item p { font-size: 13px; }
+
+    .ask-grid { margin-top: 28px; }
+    .ask-item { padding: 22px 22px; }
+    .ask-num { font-size: 28px; }
+    .ask-item h4 { font-size: 16px; }
+    .ask-item p { font-size: 13px; }
+
+    .vragen-list { gap: 6px; margin-top: 24px; }
+    .ask-section h3 { font-size: 18px !important; margin-top: 48px !important; }
+    .vragen-list li { font-size: 13px; padding: 10px 36px 10px 20px; }
+    .vragen-list .q-remove { opacity: 1; width: 26px; height: 26px; font-size: 15px; }
+
+    .footer { padding: 36px 20px 56px; }
+    .footer-inner { gap: 24px; }
+  }
+  @media (max-width: 420px) {
+    section { padding: 70px 16px 36px; }
+
+    .cover-grid { gap: 24px; }
+    .cover-visual { max-width: 160px; }
+    .cover h1 { font-size: 28px; }
+
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+
+    .ask-grid { grid-template-columns: 1fr; }
+
+    .action-bar {
+      bottom: 10px;
+      padding: 6px 6px 6px 14px;
+      gap: 10px;
+      border-radius: 80px;
+    }
+    .ab-counters { gap: 10px; }
+    .ab-counters .num { font-size: 13px; }
+    .ab-counters .group span:not(.num) { display: none; }
+    .ab-actions button { padding: 8px 12px; font-size: 11px; }
+    .ab-actions button svg { width: 12px; height: 12px; }
+    .ab-actions #btn-export span { font-size: 11px; }
+
+    .view-banner { top: 56px; font-size: 11px; padding: 6px 14px; }
+  }
+  @media (hover: none) {
+    .vragen-list .q-remove { opacity: 1; }
   }
 
   /* VIEW MODE (locked version sent to Nedbase) */
