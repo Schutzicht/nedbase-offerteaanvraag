@@ -730,7 +730,7 @@
     .ab-counters .group span:not(.num) { display: none; }
     .ab-actions button { padding: 8px 12px; font-size: 11px; }
     .ab-actions button svg { width: 12px; height: 12px; }
-    .ab-actions #btn-export span { font-size: 11px; }
+    .ab-actions #btn-sync span { font-size: 11px; }
 
     .view-banner { top: 56px; font-size: 11px; padding: 6px 14px; }
   }
@@ -743,7 +743,7 @@
   body.view-mode .action-bar,
   body.view-mode .item-toggle,
   body.view-mode .usage-note,
-  body.view-mode #btn-export,
+  body.view-mode #btn-sync,
   body.view-mode #btn-reset { display: none !important; }
   body.view-mode li.selectable[data-state="skip"] { display: none; }
   body.view-mode li.selectable[data-state="fase2"] .item-text::after {
@@ -1173,9 +1173,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
       <span>Reset</span>
     </button>
-    <button id="btn-export" class="primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
-      <span>Versie voor Nedbase</span>
+    <button id="btn-sync" class="primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M3 21v-5h5"/></svg>
+      <span>Sync naar live URL</span>
     </button>
   </div>
 </div>
@@ -1221,7 +1221,10 @@
     const id = 'vraag__' + idx + '__' + slug(text);
     li.dataset.id = id;
 
-    const initiallyRemoved = state[id] === 'removed';
+    const bakedDefaults = window.__BAKED_DEFAULTS__ || {};
+    const defaultRemoved = bakedDefaults[id] === 'removed';
+    const initiallyRemoved = state[id] === 'removed' ||
+      (state[id] === undefined && defaultRemoved);
     if (initiallyRemoved) li.dataset.removed = 'true';
 
     if (VIEW_MODE) return;
@@ -1266,9 +1269,12 @@
       li.dataset.id = id;
       li.dataset.default = def;
 
-      items.push({el: li, id, cat, text, defaultState: def});
+      const bakedDefaults = window.__BAKED_DEFAULTS__ || {};
+      const itemDefault = (bakedDefaults[id] && bakedDefaults[id] !== 'removed') ? bakedDefaults[id] : def;
 
-      const initial = state[id] || def;
+      items.push({el: li, id, cat, text, defaultState: itemDefault});
+
+      const initial = state[id] || itemDefault;
       li.dataset.state = initial;
 
       if (VIEW_MODE) return;
@@ -1362,7 +1368,7 @@
   if (!VIEW_MODE) {
     // Reset
     document.getElementById('btn-reset').addEventListener('click', () => {
-      if (!confirm('Alle keuzes terugzetten naar de oorspronkelijke voorstellen?')) return;
+      if (!confirm('Alle keuzes terugzetten naar de huidige defaults van de live versie?')) return;
       state = {};
       saveState(state);
       items.forEach(it => {
@@ -1382,41 +1388,31 @@
       updateCounters();
     });
 
-    // Build the shareable HTML for Nedbase
-    document.getElementById('btn-export').addEventListener('click', () => {
-      // Clean current state object to a compact dict
-      const stateDict = {};
-      items.forEach(it => { stateDict[it.id] = it.el.dataset.state; });
+    // Sync naar live URL: kopieer state-delta naar klembord met instructie
+    document.getElementById('btn-sync').addEventListener('click', async () => {
+      // Bouw delta: alleen items die afwijken van hun (eventueel reeds gebaked) default
+      const delta = {};
+      items.forEach(it => {
+        if (it.el.dataset.state !== it.defaultState) {
+          delta[it.id] = it.el.dataset.state;
+        }
+      });
       document.querySelectorAll('#vragen-list li').forEach(li => {
-        if (li.dataset.removed === 'true') stateDict[li.dataset.id] = 'removed';
+        if (li.dataset.removed === 'true') delta[li.dataset.id] = 'removed';
       });
 
-      const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+      const message =
+        'KAAP-BRIEFING-SYNC\n' +
+        'Hoi Claude, zet deze selecties live op nedbase-offerteaanvraag.vercel.app:\n\n' +
+        JSON.stringify(delta, null, 2);
 
-      // Clone and strip live DOM helpers before serializing
-      const clone = document.documentElement.cloneNode(true);
-      clone.querySelectorAll('.item-toggle, .q-remove').forEach(el => el.remove());
-
-      const stateScript =
-        '<scr' + 'ipt>window.__BAKED_STATE__=' + JSON.stringify(stateDict) +
-        ';window.__BAKED_DATE__=' + JSON.stringify(today) + ';</scr' + 'ipt>';
-
-      let html = '<!DOCTYPE html>\n' + clone.outerHTML;
-      html = html.replace(/<script>/, stateScript + '\n<script>');
-
-      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      const d = new Date();
-      const stamp = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-      a.href = url;
-      a.download = `KAAP-briefing-Nedbase-${stamp}.html`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      showToast('Bestand opgeslagen voor Nedbase');
+      try {
+        await navigator.clipboard.writeText(message);
+        showToast('Gekopieerd, plak in chat met Claude. Live binnen ~1 min.');
+      } catch(e) {
+        // Fallback: open prompt zodat gebruiker handmatig kan kopiëren
+        window.prompt('Kopieer deze tekst en plak hem in je chat met Claude:', message);
+      }
     });
   }
 </script>
