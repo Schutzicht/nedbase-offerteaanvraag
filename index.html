@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Briefing nieuwe website, Innovatiepunt KAAP</title>
+<meta name="description" content="Scope-uitvraag voor de nieuwe website van Innovatiepunt KAAP. MVP-eerst-aanpak met heldere fasering naar doorontwikkeling.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#161616">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Briefing nieuwe website, Innovatiepunt KAAP">
+<meta property="og:description" content="Scope-uitvraag voor de nieuwe website van Innovatiepunt KAAP. MVP-eerst-aanpak met heldere fasering naar doorontwikkeling.">
+<meta property="og:locale" content="nl_NL">
+<link rel="icon" type="image/svg+xml" href="kaap-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -97,7 +105,9 @@
   h4 { font-size: 15px; font-weight: 700; letter-spacing: -0.005em; }
 
   p { margin: 0; color: var(--ink-soft); font-size: 16px; }
-  .lead { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 780px; }
+  .lead { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 780px; margin-top: 20px; }
+  .cover .lead { margin-top: 28px; }
+  .section--shade { background: var(--bg-deep); }
 
   .grad-text {
     background: var(--kaap-grad);
@@ -149,6 +159,7 @@
     display: flex; align-items: center; gap: 14px;
     max-width: 720px;
   }
+  .usage-note strong { color: var(--ink); font-weight: 600; }
   .usage-note .pulse {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--kaap-pink); flex-shrink: 0;
@@ -403,6 +414,14 @@
   .ask-section .container { position: relative; z-index: 2; }
   .ask-section h2 { color: #fff; }
   .ask-section .lead { color: rgba(255,255,255,0.72); margin-top: 28px; }
+  .ask-section .section-label { color: rgba(255,255,255,0.5); }
+  .ask-section .section-label .num { color: #fff; }
+  .ask-section .ask-subhead {
+    color: #fff;
+    font-size: 22px;
+    margin-top: 64px;
+    margin-bottom: 24px;
+  }
   .ask-grid {
     margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
     background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
@@ -454,8 +473,6 @@
   .vragen-list .q-remove.restore { opacity: 1; background: rgba(141,115,218,0.25); color: rgba(255,255,255,0.85); }
   .vragen-list li[data-removed="true"] { opacity: 0.32; }
   .vragen-list li[data-removed="true"] .q-text { text-decoration: line-through; }
-  body.view-mode .vragen-list li[data-removed="true"] { display: none; }
-  body.view-mode .vragen-list .q-remove { display: none !important; }
 
   /* FOOTER */
   .footer { padding: 48px 48px 64px; background: var(--bg); border-top: 1px solid var(--rule); }
@@ -700,7 +717,7 @@
     .ask-item p { font-size: 13px; }
 
     .vragen-list { gap: 6px; margin-top: 24px; }
-    .ask-section h3 { font-size: 18px !important; margin-top: 48px !important; }
+    .ask-section .ask-subhead { font-size: 18px; margin-top: 40px; }
     .vragen-list li { font-size: 13px; padding: 10px 36px 10px 20px; }
     .vragen-list .q-remove { opacity: 1; width: 26px; height: 26px; font-size: 15px; }
 
@@ -732,67 +749,16 @@
     .ab-actions button svg { width: 12px; height: 12px; }
     .ab-actions #btn-sync span { font-size: 11px; }
 
-    .view-banner { top: 56px; font-size: 11px; padding: 6px 14px; }
   }
   @media (hover: none) {
     .vragen-list .q-remove { opacity: 1; }
   }
 
-  /* VIEW MODE (locked version sent to Nedbase) */
-  body.view-mode { padding-bottom: 0; }
-  body.view-mode .action-bar,
-  body.view-mode .item-toggle,
-  body.view-mode .usage-note,
-  body.view-mode #btn-sync,
-  body.view-mode #btn-reset { display: none !important; }
-  body.view-mode li.selectable[data-state="skip"] { display: none; }
-  body.view-mode li.selectable[data-state="fase2"] .item-text::after {
-    content: "Fase 2";
-    margin-left: 10px;
-    padding: 2px 8px;
-    font-size: 0.7em;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: rgba(141, 115, 218, 0.16);
-    color: var(--kaap-purple);
-    border-radius: 4px;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  .view-banner {
-    position: fixed;
-    top: 64px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 40;
-    padding: 8px 20px;
-    background: var(--ink);
-    color: #fff;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
-    display: none;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    max-width: calc(100% - 24px);
-  }
-  .view-banner .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--kaap-pink);
-    box-shadow: 0 0 0 0 rgba(234,99,152,0.5);
-    animation: pulse 2s infinite;
-  }
-  body.view-mode .view-banner { display: inline-flex; }
-
   /* PRINT */
   @page { size: A4 landscape; margin: 0; }
   @media print {
     body { padding-bottom: 0; }
-    .topnav, .action-bar, .toast, .item-toggle, .usage-note, .view-banner { display: none !important; }
+    .topnav, .action-bar, .toast, .item-toggle, .usage-note { display: none !important; }
     section { min-height: 100vh; page-break-after: always; page-break-inside: avoid; padding: 60px 48px; }
     section:last-child { page-break-after: auto; }
     body { background: var(--bg); }
@@ -828,6 +794,8 @@
   </div>
 </nav>
 
+<main>
+
 <!-- COVER -->
 <section class="cover" id="cover">
   <div class="container">
@@ -835,12 +803,12 @@
       <div>
         <div class="section-label"><span class="num">Briefing</span></div>
         <h1>Nieuwe website<br/><span class="grad-text">Innovatiepunt KAAP.</span></h1>
-        <p class="lead" style="margin-top: 32px;">
+        <p class="lead">
           Concrete uitvraag voor de bouw van de nieuwe KAAP-website. Dit document beschrijft wat er minimaal in de eerste live versie moet zitten, wat er daarna volgt en wat we van Nedbase terug verwachten.
         </p>
         <div class="usage-note">
-          <span class="pulse"></span>
-          <span><strong style="color:var(--ink); font-weight:600;">Werkdocument.</strong> Per item kun je hieronder kiezen tussen MVP, Fase 2 of Niet doen. Onderin de pagina zie je de stand. Met "Exporteer" maak je een tekstoverzicht voor Nedbase.</span>
+          <span class="pulse" aria-hidden="true"></span>
+          <span><strong>Werkdocument.</strong> Per item kun je hieronder kiezen tussen MVP, Fase 2 of Niet doen. Met "Sync naar live URL" zet je jouw selecties live, zodat Nedbase exact dezelfde versie ziet.</span>
         </div>
         <div class="meta">
           <div><span class="k">Voor</span><span class="v">Nedbase</span></div>
@@ -851,14 +819,14 @@
       </div>
       <div class="cover-visual">
         <div class="cover-mark">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 245 245" role="img" aria-label="Innovatiepunt KAAP">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 245" role="img" aria-label="Innovatiepunt KAAP">
             <defs>
               <linearGradient id="kaapGrad" x1="175.5" y1="-41.18" x2="-54.35" y2="188.68" gradientUnits="userSpaceOnUse">
                 <stop offset="0" stop-color="#ea6398"/>
                 <stop offset="1" stop-color="#8d73da"/>
               </linearGradient>
-              <linearGradient id="kaapGrad2" x1="262.72" y1="46.04" x2="32.86" y2="275.9" xlink:href="#kaapGrad"/>
-              <linearGradient id="kaapGrad3" x1="244.15" y1="27.48" x2="14.3" y2="257.33" xlink:href="#kaapGrad"/>
+              <linearGradient id="kaapGrad2" x1="262.72" y1="46.04" x2="32.86" y2="275.9" href="#kaapGrad"/>
+              <linearGradient id="kaapGrad3" x1="244.15" y1="27.48" x2="14.3" y2="257.33" href="#kaapGrad"/>
             </defs>
             <g class="logo-ring">
               <path fill="url(#kaapGrad)" d="M48.42,122.5c0-40.66,32.96-73.62,73.62-73.62,7.97,0,15.65,1.27,22.84,3.61l24.77-42.9C155,3.42,138.92,0,122.03,0,59.52,0,7.94,46.83.47,107.32l49.17,28.57c-.8-4.34-1.22-8.82-1.22-13.39Z"/>
@@ -895,11 +863,11 @@
 </section>
 
 <!-- AANPAK -->
-<section id="aanpak" style="background: var(--bg-deep);">
+<section id="aanpak" class="section--shade">
   <div class="container">
     <div class="section-label"><span class="num">02</span> Onze aanpak</div>
     <h2>MVP eerst,<br/>doorontwikkeling daarna.</h2>
-    <p class="lead" style="margin-top: 20px;">
+    <p class="lead">
       We willen niet eerst maandenlang ontwerpen voordat er iets live staat. We willen zo snel mogelijk een werkende basisversie van de site live, met de meest kritische functionaliteit erin. Daarna bouwen we gericht door, op basis van wat we in de praktijk zien gebeuren en wat het team in beheer tegenkomt.
     </p>
     <div class="aanpak-banner">
@@ -1010,11 +978,11 @@
 </section>
 
 <!-- IN SCOPE / OUT OF SCOPE -->
-<section id="fase2" style="background: var(--bg-deep);">
+<section id="fase2" class="section--shade">
   <div class="container">
     <div class="section-label"><span class="num">04</span> Scope-afbakening</div>
     <h2>Wat schuift bewust<br/>door naar Fase 2.</h2>
-    <p class="lead" style="margin-top: 20px;">
+    <p class="lead">
       Onderdelen die we bewust niet in de MVP doen, maar wel willen oppakken na livegang. Wil je een item toch in de MVP? Zet 'm op MVP, dan gaat 'ie mee in de uitvraag.
     </p>
 
@@ -1064,7 +1032,7 @@
   <div class="container">
     <div class="section-label"><span class="num">05</span> Randvoorwaarden</div>
     <h2>Wat we van het<br/>eindproduct verwachten.</h2>
-    <p class="lead" style="margin-top: 20px;">
+    <p class="lead">
       Onafhankelijk van de gekozen tech-stack of bouwwijze, dit zijn de uitgangspunten waar de website aan moet voldoen.
     </p>
 
@@ -1100,7 +1068,7 @@
 <!-- VRAAG AAN NEDBASE -->
 <section id="vraag" class="ask-section">
   <div class="container">
-    <div class="section-label" style="color: rgba(255,255,255,0.5);"><span class="num" style="color: #fff;">06</span> Wat we van jullie vragen</div>
+    <div class="section-label"><span class="num">06</span> Wat we van jullie vragen</div>
     <h2>Op basis hiervan,<br/>graag terugkoppeling op<br/><span class="grad-text">vier punten.</span></h2>
     <p class="lead">
       Geen open offerte-aanvraag, maar een concrete reactie op de scope hierboven. Dat geeft ons direct een vergelijkbaar beeld en voorkomt heen-en-weer over uitgangspunten.
@@ -1129,7 +1097,7 @@
       </div>
     </div>
 
-    <h3 style="color: #fff; margin-top: 80px; margin-bottom: 28px; font-size: 22px;">En graag ook antwoord op</h3>
+    <h3 class="ask-subhead">En graag ook antwoord op</h3>
     <ul class="vragen-list" id="vragen-list">
       <li><span class="q-text">Welke tech-stack stellen jullie voor en waarom past die bij deze scope</span></li>
       <li><span class="q-text">Welk CMS, en waarom geschikt voor een redactieteam met wisselende ervaring</span></li>
@@ -1142,6 +1110,8 @@
     </ul>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -1169,252 +1139,230 @@
     <div class="group skip"><span class="num" id="ab-skip">0</span><span>Geschrapt</span></div>
   </div>
   <div class="ab-actions">
-    <button id="btn-reset" title="Alle keuzes terug naar default">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
+    <button type="button" id="btn-reset" title="Alle keuzes terug naar default" aria-label="Selecties resetten">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
       <span>Reset</span>
     </button>
-    <button id="btn-sync" class="primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M3 21v-5h5"/></svg>
+    <button type="button" id="btn-sync" class="primary" aria-label="Selecties syncen naar live URL">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M3 21v-5h5"/></svg>
       <span>Sync naar live URL</span>
     </button>
   </div>
 </div>
 
-<div class="toast" id="toast">Gekopieerd</div>
-
-<div class="view-banner" id="view-banner">
-  <span class="dot"></span>
-  <span id="view-banner-text">Vastgestelde scope</span>
-</div>
+<div class="toast" id="toast" role="status" aria-live="polite">Gekopieerd</div>
 
 <script>
+(() => {
+  'use strict';
+
   const STORAGE_KEY = 'kaap-briefing-selection-v1';
-  const VIEW_MODE = !!window.__BAKED_STATE__;
+  const baked = window.__BAKED_DEFAULTS__ || {};
 
-  function slug(s) {
-    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
-      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
-  }
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  function loadState() {
+  const slug = (s) => s
+    .toLowerCase()
+    .normalize('NFD').replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 80);
+
+  const escape = (s) => String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  const loadState = () => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-    catch(e) { return {}; }
-  }
-  function saveState(state) {
-    if (VIEW_MODE) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
+    catch { return {}; }
+  };
+  const saveState = (s) => localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
 
-  let state = VIEW_MODE ? (window.__BAKED_STATE__ || {}) : loadState();
+  let state = loadState();
+  const items = [];
 
-  if (VIEW_MODE) {
-    document.body.classList.add('view-mode');
-    if (window.__BAKED_DATE__) {
-      document.getElementById('view-banner-text').textContent =
-        'Vastgestelde scope, ' + window.__BAKED_DATE__;
-    }
-  }
+  // Toast
+  const toastEl = $('#toast');
+  let toastTimer;
+  const toast = (msg) => {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+  };
 
-  // Wire up the removable questions list
-  document.querySelectorAll('#vragen-list li').forEach((li, idx) => {
+  // Selectable items: drie-staat toggle (MVP / Fase 2 / Niet doen)
+  $$('[data-default]').forEach(group => {
+    const groupDefault = group.dataset.default;
+
+    $$('li.selectable', group).forEach(li => {
+      const text = li.querySelector('.item-text').textContent.trim();
+      const cat = li.dataset.cat || 'Overig';
+      const id = `${slug(cat)}__${slug(text)}`;
+      const fromBaked = baked[id];
+      const itemDefault = (fromBaked && fromBaked !== 'removed') ? fromBaked : groupDefault;
+
+      li.dataset.id = id;
+      li.dataset.default = itemDefault;
+      li.dataset.state = state[id] || itemDefault;
+      items.push({ el: li, id, cat, text, default: itemDefault });
+
+      const toggle = document.createElement('div');
+      toggle.className = 'item-toggle';
+      toggle.setAttribute('role', 'group');
+      toggle.setAttribute('aria-label', `Status: ${text}`);
+      toggle.innerHTML = `
+        <button type="button" class="t-mvp"  data-set="mvp"   aria-label="In MVP">MVP</button>
+        <button type="button" class="t-f2"   data-set="fase2" aria-label="Naar Fase 2">F2</button>
+        <button type="button" class="t-skip" data-set="skip"  aria-label="Niet doen">&mdash;</button>
+      `;
+      li.appendChild(toggle);
+
+      const buttons = $$('button', toggle);
+      const apply = (next) => {
+        li.dataset.state = next;
+        state[id] = next;
+        buttons.forEach(b => b.classList.toggle('active', b.dataset.set === next));
+        saveState(state);
+        update();
+      };
+      buttons.forEach(b => {
+        b.classList.toggle('active', b.dataset.set === li.dataset.state);
+        b.addEventListener('click', () => apply(b.dataset.set));
+      });
+    });
+  });
+
+  // Removable questions
+  $$('#vragen-list li').forEach((li, idx) => {
     const text = li.querySelector('.q-text').textContent.trim();
-    const id = 'vraag__' + idx + '__' + slug(text);
+    const id = `vraag__${idx}__${slug(text)}`;
     li.dataset.id = id;
 
-    const bakedDefaults = window.__BAKED_DEFAULTS__ || {};
-    const defaultRemoved = bakedDefaults[id] === 'removed';
-    const initiallyRemoved = state[id] === 'removed' ||
-      (state[id] === undefined && defaultRemoved);
-    if (initiallyRemoved) li.dataset.removed = 'true';
-
-    if (VIEW_MODE) return;
+    const startRemoved = state[id] === 'removed'
+      || (state[id] === undefined && baked[id] === 'removed');
+    if (startRemoved) li.dataset.removed = 'true';
 
     const btn = document.createElement('button');
-    btn.className = 'q-remove';
     btn.type = 'button';
-    btn.title = initiallyRemoved ? 'Vraag terugzetten' : 'Vraag verwijderen';
-    btn.innerHTML = initiallyRemoved ? '+' : '&times;';
-    if (initiallyRemoved) btn.classList.add('restore');
+    btn.className = 'q-remove';
 
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isRemoved = li.dataset.removed === 'true';
-      if (isRemoved) {
-        delete li.dataset.removed;
-        delete state[id];
-        btn.innerHTML = '&times;';
-        btn.title = 'Vraag verwijderen';
-        btn.classList.remove('restore');
-      } else {
-        li.dataset.removed = 'true';
-        state[id] = 'removed';
-        btn.innerHTML = '+';
-        btn.title = 'Vraag terugzetten';
-        btn.classList.add('restore');
-      }
+    const render = (removed) => {
+      btn.innerHTML = removed ? '+' : '&times;';
+      const label = removed ? 'Vraag terugzetten' : 'Vraag verwijderen';
+      btn.title = label;
+      btn.setAttribute('aria-label', label);
+      btn.classList.toggle('restore', removed);
+    };
+    render(startRemoved);
+
+    btn.addEventListener('click', () => {
+      const removed = li.dataset.removed === 'true';
+      if (removed) { delete li.dataset.removed; delete state[id]; }
+      else { li.dataset.removed = 'true'; state[id] = 'removed'; }
+      render(!removed);
       saveState(state);
     });
     li.appendChild(btn);
   });
 
-  // Build items + toggles
-  const items = [];
-
-  document.querySelectorAll('[data-default]').forEach(group => {
-    const def = group.dataset.default;
-    group.querySelectorAll('li.selectable').forEach(li => {
-      const text = li.querySelector('.item-text').textContent.trim();
-      const cat = li.dataset.cat || 'Overig';
-      const id = slug(cat) + '__' + slug(text);
-      li.dataset.id = id;
-      li.dataset.default = def;
-
-      const bakedDefaults = window.__BAKED_DEFAULTS__ || {};
-      const itemDefault = (bakedDefaults[id] && bakedDefaults[id] !== 'removed') ? bakedDefaults[id] : def;
-
-      items.push({el: li, id, cat, text, defaultState: itemDefault});
-
-      const initial = state[id] || itemDefault;
-      li.dataset.state = initial;
-
-      if (VIEW_MODE) return;
-
-      const toggle = document.createElement('div');
-      toggle.className = 'item-toggle';
-      toggle.innerHTML = `
-        <button class="t-mvp" data-set="mvp" title="In MVP">MVP</button>
-        <button class="t-f2" data-set="fase2" title="Naar Fase 2">F2</button>
-        <button class="t-skip" data-set="skip" title="Niet doen">&mdash;</button>
-      `;
-      li.appendChild(toggle);
-
-      const btns = toggle.querySelectorAll('button');
-      btns.forEach(b => {
-        if (b.dataset.set === initial) b.classList.add('active');
-        b.addEventListener('click', (e) => {
-          e.preventDefault();
-          const newState = b.dataset.set;
-          li.dataset.state = newState;
-          state[id] = newState;
-          saveState(state);
-          btns.forEach(other => other.classList.toggle('active', other === b));
-          updateCounters();
-        });
-      });
-    });
-  });
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[c]));
-  }
-
-  function renderF2Mirror() {
-    const container = document.getElementById('f2-mirror');
-    if (!container) return;
+  // Items naar Fase 2 verschoven uit MVP-eisen worden in sectie 04 gespiegeld
+  const renderMirror = () => {
+    const target = $('#f2-mirror');
+    if (!target) return;
 
     const groups = {};
-    items.forEach(it => {
-      if (it.el.dataset.state !== 'fase2') return;
-      if (it.cat === 'Doorontwikkeling') return;
-      if (!groups[it.cat]) groups[it.cat] = [];
-      groups[it.cat].push(it.text);
-    });
+    for (const { el, cat, text } of items) {
+      if (el.dataset.state !== 'fase2' || cat === 'Doorontwikkeling') continue;
+      (groups[cat] ||= []).push(text);
+    }
 
     const cats = Object.keys(groups);
-    if (cats.length === 0) {
-      container.innerHTML = '';
-      container.classList.remove('has-items');
+    if (!cats.length) {
+      target.innerHTML = '';
+      target.classList.remove('has-items');
       return;
     }
 
-    let html = '<div class="f2-mirror-title">Vanuit MVP-eisen verschoven</div>';
-    cats.forEach(cat => {
-      html += '<div class="f2-mirror-group">';
-      html += '<div class="f2-mirror-group-label">' + escapeHtml(cat) + '</div>';
-      html += '<ul class="f2-mirror-list">';
-      groups[cat].forEach(t => {
-        html += '<li class="f2-mirror-item">' + escapeHtml(t) + '</li>';
-      });
-      html += '</ul></div>';
-    });
-    container.innerHTML = html;
-    container.classList.add('has-items');
-  }
+    target.innerHTML =
+      '<div class="f2-mirror-title">Vanuit MVP-eisen verschoven</div>' +
+      cats.map(cat => `
+        <div class="f2-mirror-group">
+          <div class="f2-mirror-group-label">${escape(cat)}</div>
+          <ul class="f2-mirror-list">
+            ${groups[cat].map(t => `<li class="f2-mirror-item">${escape(t)}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    target.classList.add('has-items');
+  };
 
-  function updateCounters() {
-    let mvp = 0, f2 = 0, skip = 0;
-    items.forEach(it => {
-      const s = it.el.dataset.state;
-      if (s === 'mvp') mvp++;
-      else if (s === 'fase2') f2++;
-      else if (s === 'skip') skip++;
-    });
-    const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-    set('ab-mvp', mvp); set('ab-f2', f2); set('ab-skip', skip);
-    set('stat-mvp', mvp); set('stat-f2', f2); set('stat-skip', skip);
-    renderF2Mirror();
-  }
-  updateCounters();
+  const update = () => {
+    const counts = { mvp: 0, fase2: 0, skip: 0 };
+    for (const { el } of items) counts[el.dataset.state]++;
 
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 1800);
-  }
+    const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    setText('ab-mvp',   counts.mvp);
+    setText('ab-f2',    counts.fase2);
+    setText('ab-skip',  counts.skip);
+    setText('stat-mvp', counts.mvp);
+    setText('stat-f2',  counts.fase2);
+    setText('stat-skip',counts.skip);
 
-  if (!VIEW_MODE) {
-    // Reset
-    document.getElementById('btn-reset').addEventListener('click', () => {
-      if (!confirm('Alle keuzes terugzetten naar de huidige defaults van de live versie?')) return;
-      state = {};
-      saveState(state);
-      items.forEach(it => {
-        it.el.dataset.state = it.defaultState;
-        const btns = it.el.querySelectorAll('.item-toggle button');
-        btns.forEach(b => b.classList.toggle('active', b.dataset.set === it.defaultState));
-      });
-      document.querySelectorAll('#vragen-list li').forEach(li => {
-        delete li.dataset.removed;
-        const btn = li.querySelector('.q-remove');
-        if (btn) {
-          btn.innerHTML = '&times;';
-          btn.title = 'Vraag verwijderen';
-          btn.classList.remove('restore');
-        }
-      });
-      updateCounters();
-    });
+    renderMirror();
+  };
+  update();
 
-    // Sync naar live URL: kopieer state-delta naar klembord met instructie
-    document.getElementById('btn-sync').addEventListener('click', async () => {
-      // Bouw delta: alleen items die afwijken van hun (eventueel reeds gebaked) default
-      const delta = {};
-      items.forEach(it => {
-        if (it.el.dataset.state !== it.defaultState) {
-          delta[it.id] = it.el.dataset.state;
-        }
-      });
-      document.querySelectorAll('#vragen-list li').forEach(li => {
-        if (li.dataset.removed === 'true') delta[li.dataset.id] = 'removed';
-      });
+  $('#btn-reset').addEventListener('click', () => {
+    if (!confirm('Alle keuzes terugzetten naar de huidige defaults van de live versie?')) return;
+    state = {};
+    saveState(state);
 
-      const message =
-        'KAAP-BRIEFING-SYNC\n' +
-        'Hoi Claude, zet deze selecties live op nedbase-offerteaanvraag.vercel.app:\n\n' +
-        JSON.stringify(delta, null, 2);
-
-      try {
-        await navigator.clipboard.writeText(message);
-        showToast('Gekopieerd, plak in chat met Claude. Live binnen ~1 min.');
-      } catch(e) {
-        // Fallback: open prompt zodat gebruiker handmatig kan kopiëren
-        window.prompt('Kopieer deze tekst en plak hem in je chat met Claude:', message);
+    for (const it of items) {
+      it.el.dataset.state = it.default;
+      $$('.item-toggle button', it.el).forEach(b =>
+        b.classList.toggle('active', b.dataset.set === it.default)
+      );
+    }
+    $$('#vragen-list li').forEach(li => {
+      delete li.dataset.removed;
+      const btn = li.querySelector('.q-remove');
+      if (btn) {
+        btn.innerHTML = '&times;';
+        btn.title = 'Vraag verwijderen';
+        btn.setAttribute('aria-label', 'Vraag verwijderen');
+        btn.classList.remove('restore');
       }
     });
-  }
+    update();
+  });
+
+  // Sync: alleen verschillen t.o.v. de huidige live-defaults worden meegestuurd
+  $('#btn-sync').addEventListener('click', async () => {
+    const delta = {};
+    for (const it of items) {
+      if (it.el.dataset.state !== it.default) delta[it.id] = it.el.dataset.state;
+    }
+    $$('#vragen-list li').forEach(li => {
+      if (li.dataset.removed === 'true') delta[li.dataset.id] = 'removed';
+    });
+
+    const payload = [
+      'KAAP-BRIEFING-SYNC',
+      'Selecties voor live URL update:',
+      '',
+      JSON.stringify(delta, null, 2),
+    ].join('\n');
+
+    try {
+      await navigator.clipboard.writeText(payload);
+      toast('Gekopieerd, plak in chat met Claude');
+    } catch {
+      window.prompt('Kopieer onderstaande tekst:', payload);
+    }
+  });
+})();
 </script>
 
 </body>
