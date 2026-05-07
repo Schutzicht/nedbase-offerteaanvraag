@@ -343,6 +343,35 @@
     color: rgba(255,255,255,0.55); font-weight: 600;
   }
   .scope-card.out { background: rgba(255,255,255,0.45); border: 1px solid var(--rule); }
+
+  /* F2 mirror: items moved from MVP into Fase 2 */
+  .f2-mirror { display: none; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px dashed var(--rule); }
+  .f2-mirror.has-items { display: block; }
+  .f2-mirror-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .f2-mirror-title::before {
+    content: ''; width: 16px; height: 1px; background: var(--kaap-purple); opacity: 0.6;
+  }
+  .f2-mirror-group { margin-bottom: 14px; }
+  .f2-mirror-group:last-child { margin-bottom: 0; }
+  .f2-mirror-group-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--kaap-purple);
+    margin-bottom: 6px; opacity: 0.85;
+  }
+  .f2-mirror-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .f2-mirror-item {
+    font-size: 14px; color: var(--ink-soft);
+    padding-left: 18px; position: relative; line-height: 1.45;
+  }
+  .f2-mirror-item::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 10px; height: 1px; background: var(--kaap-purple); opacity: 0.55;
+  }
   .scope-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
@@ -915,8 +944,11 @@
         <ul>
           <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Homepage</span></li>
           <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Over De KAAP</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Programma's en activiteiten</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Faciliteiten</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Events / agenda</span></li>
+          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Reserveren ruimte</span></li>
+          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Projecten</span></li>
+          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Vacatures</span></li>
+          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Partners en samenwerkingen</span></li>
           <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Contact</span></li>
         </ul>
       </div>
@@ -929,6 +961,7 @@
           <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Structuur per doelgroep, "Ik wil..."-ingang</span></li>
           <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Visuele presentatie, geen tekstsite meer</span></li>
           <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen thema's Energy, Food, Water</span></li>
+          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Mogelijkheid om nieuwe thema's toe te voegen via het CMS</span></li>
           <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen diensten faciliteren, bewustwording, verbinden</span></li>
         </ul>
       </div>
@@ -1010,6 +1043,9 @@
         <span class="scope-tag">Fase 2, na livegang</span>
         <h3>Doorontwikkeling</h3>
         <p>Op basis van gebruik, feedback en nieuwe wensen na livegang.</p>
+
+        <div class="f2-mirror" id="f2-mirror"></div>
+
         <ul>
           <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Verdiepende content per doelgroep en thema</span></li>
           <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Extra functionaliteiten, intake-flows, formulieren</span></li>
@@ -1262,6 +1298,45 @@
     });
   });
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  function renderF2Mirror() {
+    const container = document.getElementById('f2-mirror');
+    if (!container) return;
+
+    const groups = {};
+    items.forEach(it => {
+      if (it.el.dataset.state !== 'fase2') return;
+      if (it.cat === 'Doorontwikkeling') return;
+      if (!groups[it.cat]) groups[it.cat] = [];
+      groups[it.cat].push(it.text);
+    });
+
+    const cats = Object.keys(groups);
+    if (cats.length === 0) {
+      container.innerHTML = '';
+      container.classList.remove('has-items');
+      return;
+    }
+
+    let html = '<div class="f2-mirror-title">Vanuit MVP-eisen verschoven</div>';
+    cats.forEach(cat => {
+      html += '<div class="f2-mirror-group">';
+      html += '<div class="f2-mirror-group-label">' + escapeHtml(cat) + '</div>';
+      html += '<ul class="f2-mirror-list">';
+      groups[cat].forEach(t => {
+        html += '<li class="f2-mirror-item">' + escapeHtml(t) + '</li>';
+      });
+      html += '</ul></div>';
+    });
+    container.innerHTML = html;
+    container.classList.add('has-items');
+  }
+
   function updateCounters() {
     let mvp = 0, f2 = 0, skip = 0;
     items.forEach(it => {
@@ -1273,6 +1348,7 @@
     const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
     set('ab-mvp', mvp); set('ab-f2', f2); set('ab-skip', skip);
     set('stat-mvp', mvp); set('stat-f2', f2); set('stat-skip', skip);
+    renderF2Mirror();
   }
   updateCounters();
 
