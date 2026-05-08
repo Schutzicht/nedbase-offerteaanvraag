@@ -44,7 +44,7 @@
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.55;
   }
-  body { scroll-behavior: smooth; padding-bottom: 88px; }
+  body { scroll-behavior: smooth; }
 
   /* TOP NAV */
   .topnav {
@@ -147,31 +147,6 @@
     .cover-mark .logo-ring { animation: none; }
   }
 
-  /* USAGE NOTE (only shows on briefing pages) */
-  .usage-note {
-    margin-top: 24px;
-    padding: 14px 20px;
-    background: var(--kaap-grad-soft);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    font-size: 13px;
-    color: var(--ink-soft);
-    display: flex; align-items: center; gap: 14px;
-    max-width: 720px;
-  }
-  .usage-note strong { color: var(--ink); font-weight: 600; }
-  .usage-note .pulse {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--kaap-pink); flex-shrink: 0;
-    box-shadow: 0 0 0 0 rgba(234,99,152,0.6);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(234,99,152,0.5); }
-    70% { box-shadow: 0 0 0 8px rgba(234,99,152,0); }
-    100% { box-shadow: 0 0 0 0 rgba(234,99,152,0); }
-  }
-
   /* DOEL */
   .doel-grid { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   .doel-block h3 { margin-bottom: 12px; }
@@ -240,159 +215,73 @@
     color: #fff; border-radius: 4px; font-size: 10px; letter-spacing: 0.12em;
   }
   .req-item h3 { font-size: 19px; margin-top: 2px; }
-  .req-item ul, .scope-card ul {
+  .req-item ul {
     list-style: none; padding: 0; margin: 8px 0 0 0;
     display: flex; flex-direction: column; gap: 6px;
   }
-
-  /* SELECTABLE LIST ITEMS */
-  li.selectable {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .req-item ul li {
     font-size: 14px;
-    color: var(--ink-soft);
+    color: var(--ink);
+    font-weight: 500;
     line-height: 1.45;
-    padding: 6px 0;
-    border-radius: 6px;
-    transition: background 120ms ease;
-  }
-  li.selectable .item-text {
-    flex: 1;
-    padding-left: 18px;
+    padding: 4px 0 4px 18px;
     position: relative;
   }
-  li.selectable .item-text::before {
+  .req-item ul li::before {
     content: '';
     position: absolute;
-    left: 0; top: 9px;
-    width: 10px; height: 1px;
-    background: var(--ink-muted);
-    transition: all 160ms ease;
-  }
-  li.selectable.must .item-text { color: var(--ink); font-weight: 500; }
-  li.selectable.must .item-text::before { background: var(--kaap-pink); height: 2px; top: 9px; }
-
-  li.selectable[data-state="fase2"] .item-text { color: var(--ink-muted); font-weight: 400; }
-  li.selectable[data-state="fase2"] .item-text::before { background: var(--kaap-purple); opacity: 0.5; }
-  li.selectable[data-state="skip"] .item-text { text-decoration: line-through; color: var(--ink-muted); opacity: 0.55; font-weight: 400; }
-  li.selectable[data-state="skip"] .item-text::before { background: var(--ink-muted); opacity: 0.4; }
-
-  .item-toggle {
-    display: inline-flex;
-    gap: 2px;
-    background: rgba(0,0,0,0.04);
-    border-radius: 8px;
-    padding: 2px;
-    flex-shrink: 0;
-  }
-  .item-toggle button {
-    appearance: none;
-    border: 0;
-    background: transparent;
-    padding: 4px 9px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--ink-muted);
-    cursor: pointer;
-    font-family: inherit;
-    border-radius: 6px;
-    transition: all 120ms ease;
-    line-height: 1;
-    min-width: 28px;
-  }
-  .item-toggle button:hover { color: var(--ink); }
-  .item-toggle button.active.t-mvp {
-    background: var(--ink); color: #fff;
-  }
-  .item-toggle button.active.t-f2 {
-    background: var(--kaap-purple); color: #fff;
-  }
-  .item-toggle button.active.t-skip {
-    background: var(--ink-muted); color: #fff;
+    left: 0; top: 11px;
+    width: 10px; height: 2px;
+    background: var(--kaap-pink);
   }
 
-  .req-legend {
-    margin-top: 20px; display: flex; gap: 28px; font-size: 13px;
-    color: var(--ink-muted); flex-wrap: wrap;
-  }
-  .req-legend span { display: flex; align-items: center; gap: 8px; }
-  .req-legend .dot { width: 10px; height: 2px; background: var(--ink-muted); }
-  .req-legend .dot.must { background: var(--kaap-pink); }
-
-  /* SCOPE SPLIT (Fase 2 section) */
-  .scope-split { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  /* SCOPE-AFBAKENING / FASE 2 */
   .scope-card {
-    padding: 28px 26px; border-radius: 18px;
-    display: flex; flex-direction: column;
+    margin-top: 32px;
+    padding: 32px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.45);
+    border: 1px solid var(--rule);
   }
-  .scope-card.in {
-    background: var(--ink); color: #fff;
-    position: relative; overflow: hidden;
-  }
-  .scope-card.in::before {
-    content: ''; position: absolute; top: -100px; right: -100px;
-    width: 320px; height: 320px; background: var(--kaap-grad);
-    filter: blur(80px); opacity: 0.45;
-  }
-  .scope-card.in h3 { color: #fff; }
-  .scope-card.in p { color: rgba(255,255,255,0.7); }
-  .scope-card.in .summary-stats {
-    margin-top: auto; position: relative; z-index: 2;
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
-    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
-  }
-  .scope-card.in .summary-stats div { display: flex; flex-direction: column; gap: 4px; }
-  .scope-card.in .summary-stats .num {
-    font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
-    background: var(--kaap-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-    line-height: 1; font-variant-numeric: tabular-nums;
-  }
-  .scope-card.in .summary-stats .label {
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55); font-weight: 600;
-  }
-  .scope-card.out { background: rgba(255,255,255,0.45); border: 1px solid var(--rule); }
-
-  /* F2 mirror: items moved from MVP into Fase 2 */
-  .f2-mirror { display: none; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px dashed var(--rule); }
-  .f2-mirror.has-items { display: block; }
-  .f2-mirror-title {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--ink-muted);
-    margin-bottom: 14px;
-  }
-  .f2-mirror-title::before {
-    content: ''; width: 16px; height: 1px; background: var(--kaap-purple); opacity: 0.6;
-  }
-  .f2-mirror-group { margin-bottom: 14px; }
-  .f2-mirror-group:last-child { margin-bottom: 0; }
-  .f2-mirror-group-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--kaap-purple);
-    margin-bottom: 6px; opacity: 0.85;
-  }
-  .f2-mirror-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
-  .f2-mirror-item {
-    font-size: 14px; color: var(--ink-soft);
-    padding-left: 18px; position: relative; line-height: 1.45;
-  }
-  .f2-mirror-item::before {
-    content: ''; position: absolute; left: 0; top: 9px;
-    width: 10px; height: 1px; background: var(--kaap-purple); opacity: 0.55;
-  }
+  .scope-card h3 { font-size: 26px; margin-bottom: 12px; }
+  .scope-card > p { font-size: 14px; margin-bottom: 24px; }
   .scope-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
     font-weight: 700; margin-bottom: 18px; padding: 6px 12px;
-    border-radius: 999px; align-self: flex-start;
-    background: rgba(255,255,255,0.12); color: #fff;
+    border-radius: 999px; background: var(--bg-deep); color: var(--ink-soft);
   }
-  .scope-card.out .scope-tag { background: var(--bg-deep); color: var(--ink-soft); }
-  .scope-card h3 { font-size: 26px; margin-bottom: 12px; }
-  .scope-card p { font-size: 14px; margin-bottom: 20px; }
+
+  .f2-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .f2-group-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--kaap-purple);
+    margin-bottom: 10px;
+  }
+  .f2-group ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .f2-group ul li {
+    font-size: 14px; color: var(--ink); font-weight: 500;
+    line-height: 1.45;
+    padding-left: 18px;
+    position: relative;
+  }
+  .f2-group ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 11px;
+    width: 10px; height: 2px;
+    background: var(--kaap-purple);
+    opacity: 0.7;
+  }
 
   /* RANDVOORWAARDEN */
   .voorw-grid {
@@ -443,36 +332,13 @@
   }
   .vragen-list li {
     color: rgba(255,255,255,0.75); font-size: 14px;
-    padding: 12px 40px 12px 24px; position: relative;
+    padding: 12px 0 12px 24px; position: relative;
     border-top: 1px solid rgba(255,255,255,0.1);
-    transition: opacity 180ms ease;
   }
   .vragen-list li::before {
     content: '?'; position: absolute; left: 0; top: 12px;
     color: var(--kaap-pink); font-weight: 700; font-size: 14px;
   }
-  .vragen-list .q-remove {
-    appearance: none;
-    border: 0;
-    background: rgba(255,255,255,0.06);
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    color: rgba(255,255,255,0.55);
-    cursor: pointer;
-    position: absolute;
-    right: 0; top: 50%;
-    transform: translateY(-50%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; line-height: 1;
-    font-family: inherit;
-    transition: all 140ms ease;
-    opacity: 0;
-  }
-  .vragen-list li:hover .q-remove { opacity: 1; }
-  .vragen-list .q-remove:hover { background: rgba(234,99,152,0.25); color: #fff; }
-  .vragen-list .q-remove.restore { opacity: 1; background: rgba(141,115,218,0.25); color: rgba(255,255,255,0.85); }
-  .vragen-list li[data-removed="true"] { opacity: 0.32; }
-  .vragen-list li[data-removed="true"] .q-text { text-decoration: line-through; }
 
   /* FOOTER */
   .footer { padding: 48px 48px 64px; background: var(--bg); border-top: 1px solid var(--rule); }
@@ -484,149 +350,6 @@
   .footer p { font-size: 14px; }
   .footer .right { text-align: right; font-size: 13px; color: var(--ink-muted); }
 
-  /* ACTION BAR (fixed bottom) */
-  .action-bar {
-    position: fixed;
-    bottom: 16px; left: 50%; transform: translateX(-50%);
-    z-index: 60;
-    background: var(--ink);
-    color: #fff;
-    border-radius: 100px;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
-    padding: 8px 8px 8px 28px;
-    display: flex; align-items: center; gap: 28px;
-    max-width: calc(100% - 32px);
-  }
-  .ab-counters {
-    display: flex; gap: 22px;
-    font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500;
-    white-space: nowrap;
-  }
-  .ab-counters .group { display: flex; align-items: center; gap: 8px; }
-  .ab-counters .num {
-    font-weight: 800; color: #fff; font-size: 18px;
-    font-variant-numeric: tabular-nums; line-height: 1;
-  }
-  .ab-counters .group.mvp .num { color: var(--kaap-pink); }
-  .ab-counters .group.f2 .num { color: var(--kaap-purple); }
-  .ab-counters .group.skip .num { color: rgba(255,255,255,0.4); }
-  .ab-actions { display: flex; gap: 6px; }
-  .ab-actions button {
-    appearance: none;
-    border: 0;
-    padding: 12px 20px;
-    border-radius: 100px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 140ms ease;
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .ab-actions button:hover { background: rgba(255,255,255,0.16); }
-  .ab-actions button.primary {
-    background: var(--kaap-grad);
-    color: #fff;
-  }
-  .ab-actions button.primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(234,99,152,0.4); }
-  .ab-actions button svg { width: 14px; height: 14px; }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(20,20,20,0.6);
-    backdrop-filter: blur(6px);
-    z-index: 100;
-    display: none;
-    align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--bg);
-    border-radius: 20px;
-    width: 100%;
-    max-width: 720px;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
-  }
-  .modal-header {
-    padding: 24px 28px;
-    border-bottom: 1px solid var(--rule);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .modal-header h3 { font-size: 20px; }
-  .modal-header p { font-size: 13px; margin-top: 4px; }
-  .modal-close {
-    appearance: none; border: 0; background: transparent;
-    width: 36px; height: 36px; border-radius: 50%;
-    cursor: pointer; font-size: 22px; line-height: 1;
-    color: var(--ink-soft); transition: all 120ms ease;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .modal-close:hover { background: var(--bg-deep); color: var(--ink); }
-  .modal-body { padding: 24px 28px; overflow-y: auto; flex: 1; }
-  .modal-body textarea {
-    width: 100%;
-    min-height: 360px;
-    padding: 18px;
-    font-family: 'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
-    font-size: 12px;
-    line-height: 1.55;
-    color: var(--ink);
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    resize: vertical;
-  }
-  .modal-footer {
-    padding: 18px 28px;
-    border-top: 1px solid var(--rule);
-    display: flex; gap: 10px; justify-content: flex-end;
-    background: var(--bg-deep);
-  }
-  .modal-footer button {
-    appearance: none; border: 0;
-    padding: 10px 18px;
-    border-radius: 100px;
-    font-family: inherit;
-    font-size: 13px; font-weight: 600;
-    cursor: pointer;
-    background: var(--bg);
-    color: var(--ink);
-    border: 1px solid var(--rule);
-    display: flex; align-items: center; gap: 8px;
-    transition: all 140ms ease;
-  }
-  .modal-footer button:hover { background: #fff; }
-  .modal-footer button.primary {
-    background: var(--ink); color: #fff; border-color: var(--ink);
-  }
-  .modal-footer button.primary:hover { background: #000; }
-
-  .toast {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--ink);
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    z-index: 200;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 240ms ease;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
   /* RESPONSIVE */
   @media (max-width: 980px) {
     section { padding: 88px 28px 56px; }
@@ -635,21 +358,12 @@
     .cover-grid { grid-template-columns: 1fr; gap: 40px; }
     .cover-visual { max-width: 280px; aspect-ratio: 1/1; }
     .cover .meta { grid-template-columns: 1fr 1fr; gap: 24px 36px; }
-    .doel-grid, .req-intro, .scope-split, .voorw-grid, .ask-grid, .vragen-list, .footer-inner { grid-template-columns: 1fr; }
+    .doel-grid, .req-intro, .voorw-grid, .ask-grid, .vragen-list, .footer-inner, .f2-list { grid-template-columns: 1fr; }
     .req-grid { grid-template-columns: 1fr; gap: 1px; }
     .aanpak-banner { grid-template-columns: 1fr; gap: 14px; }
     .critical-banner { grid-template-columns: 1fr; gap: 14px; padding: 18px 22px; }
     .footer .right { text-align: left; }
-    .scope-card.in .summary-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     h1 { font-size: 44px; }
-
-    .action-bar { padding: 8px 8px 8px 18px; gap: 14px; }
-    .ab-counters { gap: 12px; font-size: 11px; }
-    .ab-counters .num { font-size: 15px; }
-    .ab-actions button { padding: 10px 14px; font-size: 12px; }
-    .ab-actions button:not(.primary) span { display: none; }
-
-    .vragen-list .q-remove { opacity: 1; }
   }
   @media (max-width: 640px) {
     section { padding: 76px 18px 44px; }
@@ -657,7 +371,6 @@
 
     .topnav-inner { padding: 10px 16px; gap: 8px; }
     .brand-pair { font-size: 11px; gap: 8px; }
-    .brand-pair .arrow { width: 14px; }
     .brand-pair span:last-child { display: none; }
     .brand-pair .arrow { display: none; }
 
@@ -665,7 +378,6 @@
     .cover-visual { max-width: 220px; }
     .cover .meta { grid-template-columns: 1fr; gap: 16px; padding-top: 20px; margin-top: 24px; }
     .cover .meta .v { font-size: 14px; }
-    .usage-note { font-size: 12px; padding: 12px 16px; gap: 12px; }
 
     .section-label { margin-bottom: 16px; font-size: 11px; }
     h1 { font-size: 34px; }
@@ -690,20 +402,10 @@
     .req-num { font-size: 11px; gap: 6px; flex-wrap: wrap; }
     .req-item h3 { font-size: 17px; }
 
-    li.selectable { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 0; }
-    .item-toggle { align-self: flex-start; }
-    .item-toggle button { padding: 6px 12px; min-width: 36px; font-size: 11px; }
-
-    .req-legend { gap: 16px 20px; font-size: 12px; }
-
-    .scope-split { gap: 18px; margin-top: 24px; }
-    .scope-card { padding: 22px 20px; }
+    .scope-card { padding: 24px 20px; margin-top: 24px; }
     .scope-card h3 { font-size: 22px; }
-    .scope-card p { font-size: 14px; margin-bottom: 16px; }
-    .scope-card .scope-tag { font-size: 10px; padding: 5px 10px; margin-bottom: 14px; }
-    .scope-card.in .summary-stats { gap: 10px; padding-top: 18px; }
-    .scope-card.in .summary-stats .num { font-size: 26px; }
-    .scope-card.in .summary-stats .label { font-size: 9px; letter-spacing: 0.1em; }
+    .scope-card > p { font-size: 14px; margin-bottom: 16px; }
+    .scope-tag { font-size: 10px; padding: 5px 10px; margin-bottom: 14px; }
 
     .voorw-grid { margin-top: 24px; }
     .voorw-item { padding: 18px 20px; }
@@ -718,8 +420,7 @@
 
     .vragen-list { gap: 6px; margin-top: 24px; }
     .ask-section .ask-subhead { font-size: 18px; margin-top: 40px; }
-    .vragen-list li { font-size: 13px; padding: 10px 36px 10px 20px; }
-    .vragen-list .q-remove { opacity: 1; width: 26px; height: 26px; font-size: 15px; }
+    .vragen-list li { font-size: 13px; padding: 10px 0 10px 20px; }
 
     .footer { padding: 36px 20px 56px; }
     .footer-inner { gap: 24px; }
@@ -735,41 +436,16 @@
     h2 { font-size: 24px; }
 
     .ask-grid { grid-template-columns: 1fr; }
-
-    .action-bar {
-      bottom: 10px;
-      padding: 6px 6px 6px 14px;
-      gap: 10px;
-      border-radius: 80px;
-    }
-    .ab-counters { gap: 10px; }
-    .ab-counters .num { font-size: 13px; }
-    .ab-counters .group span:not(.num) { display: none; }
-    .ab-actions button { padding: 8px 12px; font-size: 11px; }
-    .ab-actions button svg { width: 12px; height: 12px; }
-    .ab-actions #btn-sync span { font-size: 11px; }
-
-  }
-  @media (hover: none) {
-    .vragen-list .q-remove { opacity: 1; }
   }
 
   /* PRINT */
   @page { size: A4 landscape; margin: 0; }
   @media print {
-    body { padding-bottom: 0; }
-    .topnav, .action-bar, .toast, .item-toggle, .usage-note { display: none !important; }
+    .topnav { display: none !important; }
     section { min-height: 100vh; page-break-after: always; page-break-inside: avoid; padding: 60px 48px; }
     section:last-child { page-break-after: auto; }
     body { background: var(--bg); }
     .req-item:hover { background: var(--bg); }
-    li.selectable[data-state="skip"] { display: none; }
-    li.selectable[data-state="fase2"] .item-text::after {
-      content: " [Fase 2]";
-      color: var(--kaap-purple);
-      font-weight: 600;
-      font-size: 0.85em;
-    }
   }
 </style>
 </head>
@@ -806,10 +482,6 @@
         <p class="lead">
           Concrete uitvraag voor de bouw van de nieuwe KAAP-website. Dit document beschrijft wat er minimaal in de eerste live versie moet zitten, wat er daarna volgt en wat we van Nedbase terug verwachten.
         </p>
-        <div class="usage-note">
-          <span class="pulse" aria-hidden="true"></span>
-          <span><strong>Werkdocument.</strong> De toggles per item geven aan wat in de MVP zit (MVP), wat naar de doorontwikkeling schuift (F2) of bewust niet wordt meegenomen.</span>
-        </div>
         <div class="meta">
           <div><span class="k">Voor</span><span class="v">Nedbase</span></div>
           <div><span class="k">Van</span><span class="v">Innovatiepunt KAAP</span></div>
@@ -896,16 +568,15 @@
       <p class="body"><strong>Bisner-integratie</strong> is een harde voorwaarde voor de MVP. Zonder werkende koppeling met Bisner voor events en boekbare ruimtes is de website niet live-waardig, ongeacht de rest van de scope.</p>
     </div>
 
-    <div class="req-grid" data-default="mvp">
+    <div class="req-grid">
       <div class="req-item priority">
         <span class="req-num">01 / Bisner-integratie <span class="priority-tag">Kritisch</span></span>
         <h3>Bisner-koppeling</h3>
         <ul>
-          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Events automatisch tonen vanuit Bisner</span></li>
-          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Boekbare ruimtes zichtbaar op de site</span></li>
-          <li class="selectable must" data-cat="Bisner-koppeling"><span class="item-text">Doorklikken naar Bisner voor inschrijving en boeking</span></li>
-          <li class="selectable" data-cat="Bisner-koppeling"><span class="item-text">Realtime of dagelijks gesynchroniseerd, voorstel van jullie</span></li>
-          <li class="selectable" data-cat="Bisner-koppeling"><span class="item-text">Foutafhandeling als Bisner-API tijdelijk niet bereikbaar is</span></li>
+          <li>Events automatisch tonen vanuit Bisner</li>
+          <li>Boekbare ruimtes zichtbaar op de site</li>
+          <li>Realtime of dagelijks gesynchroniseerd, voorstel van jullie</li>
+          <li>Foutafhandeling als Bisner-API tijdelijk niet bereikbaar is</li>
         </ul>
       </div>
 
@@ -913,14 +584,13 @@
         <span class="req-num">02 / Structuur</span>
         <h3>Basispagina's</h3>
         <ul>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Homepage</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Over De KAAP</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Events / agenda</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Reserveren ruimte</span></li>
-          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Projecten</span></li>
-          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Vacatures</span></li>
-          <li class="selectable" data-cat="Basispagina's"><span class="item-text">Partners en samenwerkingen</span></li>
-          <li class="selectable must" data-cat="Basispagina's"><span class="item-text">Contact</span></li>
+          <li>Homepage</li>
+          <li>Over De KAAP</li>
+          <li>Events / agenda</li>
+          <li>Reserveren ruimte</li>
+          <li>Projecten</li>
+          <li>Partners en samenwerkingen</li>
+          <li>Contact</li>
         </ul>
       </div>
 
@@ -928,12 +598,11 @@
         <span class="req-num">03 / Positionering</span>
         <h3>Content per doelgroep</h3>
         <ul>
-          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Heldere uitleg van wat KAAP is</span></li>
-          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Behoefte-gerichte ingang per doelgroep, ondernemers, onderwijs en overheid ("Ik wil ruimte huren", "Ik wil partner worden", etc.)</span></li>
-          <li class="selectable must" data-cat="Content per doelgroep"><span class="item-text">Visuele presentatie, geen tekstsite meer</span></li>
-          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen de drie transitiethema's: Energy, Food, Water</span></li>
-          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Mogelijkheid om nieuwe transitiethema's toe te voegen via het CMS</span></li>
-          <li class="selectable" data-cat="Content per doelgroep"><span class="item-text">Onderscheid tussen de drie kernactiviteiten: faciliteren, bewustwording, verbinden</span></li>
+          <li>Heldere uitleg van wat KAAP is</li>
+          <li>Behoefte-gerichte ingang per doelgroep, ondernemers, onderwijs en overheid ("Ik wil ruimte huren", "Ik wil partner worden", etc.)</li>
+          <li>Visuele presentatie, geen tekstsite meer</li>
+          <li>Onderscheid tussen de drie transitiethema's: Energy, Food, Water</li>
+          <li>Onderscheid tussen de drie kernactiviteiten: faciliteren, bewustwording, verbinden</li>
         </ul>
       </div>
 
@@ -941,10 +610,9 @@
         <span class="req-num">04 / UX</span>
         <h3>Navigatie en klantreis</h3>
         <ul>
-          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Logische sitestructuur, max drie klikken naar elke pagina</span></li>
-          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Duidelijke klantreis per doelgroep</span></li>
-          <li class="selectable must" data-cat="Navigatie en klantreis"><span class="item-text">Heldere call-to-actions per pagina</span></li>
-          <li class="selectable" data-cat="Navigatie en klantreis"><span class="item-text">Hero-sectie met snelle ingangen op basis van behoefte</span></li>
+          <li>Duidelijke klantreis per doelgroep</li>
+          <li>Heldere call-to-actions per pagina</li>
+          <li>Hero-sectie met snelle ingangen op basis van behoefte</li>
         </ul>
       </div>
 
@@ -952,11 +620,9 @@
         <span class="req-num">05 / CMS</span>
         <h3>Beheer en redactie</h3>
         <ul>
-          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Content eenvoudig aanpasbaar zonder technische kennis</span></li>
-          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Pagina's zelfstandig kunnen toevoegen</span></li>
-          <li class="selectable must" data-cat="Beheer en redactie"><span class="item-text">Rollen en rechten, onderscheid medewerker en stagiair</span></li>
-          <li class="selectable" data-cat="Beheer en redactie"><span class="item-text">Mediabibliotheek met afbeeldingsbeheer</span></li>
-          <li class="selectable" data-cat="Beheer en redactie"><span class="item-text">Revisiegeschiedenis op pagina-niveau</span></li>
+          <li>Content eenvoudig aanpasbaar zonder technische kennis</li>
+          <li>Pagina's zelfstandig kunnen toevoegen</li>
+          <li>Mediabibliotheek met afbeeldingsbeheer</li>
         </ul>
       </div>
 
@@ -964,67 +630,78 @@
         <span class="req-num">06 / Techniek</span>
         <h3>Technisch fundament</h3>
         <ul>
-          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Volledig responsive, 360px tot desktop</span></li>
-          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Basis-SEO, metadata, sitemap, structured data</span></li>
-          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">Analytics-koppeling, Google Analytics en Search Console</span></li>
-          <li class="selectable must" data-cat="Technisch fundament"><span class="item-text">SEO-migratie van bestaande URL's</span></li>
-          <li class="selectable" data-cat="Technisch fundament"><span class="item-text">Hosting, back-ups en monitoring meegenomen in voorstel</span></li>
+          <li>Volledig responsive, 360px tot desktop</li>
+          <li>Analytics-koppeling, Google Analytics en Search Console</li>
+          <li>SEO-migratie van bestaande URL's</li>
+          <li>Hosting, back-ups en monitoring meegenomen in voorstel</li>
         </ul>
       </div>
-    </div>
-
-    <div class="req-legend">
-      <span><span class="dot must"></span>Voorgesteld als harde eis</span>
-      <span><span class="dot"></span>Sterk gewenst, te bespreken</span>
     </div>
   </div>
 </section>
 
-<!-- IN SCOPE / OUT OF SCOPE -->
+<!-- FASE 2 / DOORONTWIKKELING -->
 <section id="fase2" class="section--shade">
   <div class="container">
     <div class="section-label"><span class="num">04</span> Scope-afbakening</div>
     <h2>Wat schuift bewust<br/>door naar Fase 2.</h2>
     <p class="lead">
-      Onderdelen die we bewust niet in de MVP doen, maar wel willen oppakken na livegang. Wil je een item toch in de MVP? Zet 'm op MVP, dan gaat 'ie mee in de uitvraag.
+      Onderdelen die we bewust niet in de MVP doen, maar wel willen oppakken na livegang. Niet onbelangrijk, maar niet nodig om live te kunnen gaan.
     </p>
 
-    <div class="scope-split">
-      <div class="scope-card in">
-        <span class="scope-tag">Live overzicht</span>
-        <h3>Stand van<br/>de scope.</h3>
-        <p>Telt automatisch mee als je hierboven of hieronder iets verschuift.</p>
-        <div class="summary-stats">
-          <div>
-            <span class="num" id="stat-mvp">0</span>
-            <span class="label">In MVP</span>
-          </div>
-          <div>
-            <span class="num" id="stat-f2">0</span>
-            <span class="label">In Fase 2</span>
-          </div>
-          <div>
-            <span class="num" id="stat-skip">0</span>
-            <span class="label">Geschrapt</span>
-          </div>
+    <div class="scope-card out">
+      <span class="scope-tag">Fase 2, na livegang</span>
+      <h3>Doorontwikkeling</h3>
+      <p>Op basis van gebruik, feedback en nieuwe wensen na livegang.</p>
+
+      <div class="f2-list">
+        <div class="f2-group">
+          <div class="f2-group-label">Bisner-koppeling</div>
+          <ul>
+            <li>Doorklikken naar Bisner voor inschrijving en boeking, in eerste instantie via een directe link, in Fase 2 ingebouwd</li>
+          </ul>
         </div>
-      </div>
 
-      <div class="scope-card out" data-default="fase2">
-        <span class="scope-tag">Fase 2, na livegang</span>
-        <h3>Doorontwikkeling</h3>
-        <p>Op basis van gebruik, feedback en nieuwe wensen na livegang.</p>
+        <div class="f2-group">
+          <div class="f2-group-label">Basispagina's</div>
+          <ul>
+            <li>Vacatures</li>
+          </ul>
+        </div>
 
-        <div class="f2-mirror" id="f2-mirror"></div>
+        <div class="f2-group">
+          <div class="f2-group-label">Content per doelgroep</div>
+          <ul>
+            <li>Mogelijkheid om nieuwe transitiethema's toe te voegen via het CMS</li>
+          </ul>
+        </div>
 
-        <ul>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Verdiepende content per doelgroep en thema</span></li>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Extra functionaliteiten, intake-flows, formulieren</span></li>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Aanvullende integraties, bijvoorbeeld HubSpot</span></li>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Aansluiting op nieuwe Dockwize-website</span></li>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">UX-optimalisatie op basis van analytics</span></li>
-          <li class="selectable" data-cat="Doorontwikkeling"><span class="item-text">Doorontwikkeling op basis van praktijksignalen</span></li>
-        </ul>
+        <div class="f2-group">
+          <div class="f2-group-label">Beheer en redactie</div>
+          <ul>
+            <li>Rollen en rechten, onderscheid medewerker en stagiair</li>
+            <li>Revisiegeschiedenis op pagina-niveau</li>
+          </ul>
+        </div>
+
+        <div class="f2-group">
+          <div class="f2-group-label">Technisch fundament</div>
+          <ul>
+            <li>Basis-SEO, metadata, sitemap, structured data</li>
+          </ul>
+        </div>
+
+        <div class="f2-group">
+          <div class="f2-group-label">Aanvullende functionaliteit</div>
+          <ul>
+            <li>Verdiepende content per doelgroep en thema</li>
+            <li>Extra functionaliteiten, intake-flows, formulieren</li>
+            <li>Aanvullende integraties, bijvoorbeeld HubSpot</li>
+            <li>Aansluiting op nieuwe Dockwize-website</li>
+            <li>UX-optimalisatie op basis van analytics</li>
+            <li>Doorontwikkeling op basis van praktijksignalen</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1101,15 +778,14 @@
     </div>
 
     <h3 class="ask-subhead">En graag ook antwoord op</h3>
-    <ul class="vragen-list" id="vragen-list">
-      <li><span class="q-text">Welke tech-stack stellen jullie voor en waarom past die bij deze scope</span></li>
-      <li><span class="q-text">Welk CMS, en waarom geschikt voor een redactieteam met wisselende ervaring</span></li>
-      <li><span class="q-text">Hoe pakken jullie de Bisner-integratie technisch aan</span></li>
-      <li><span class="q-text">Hoe verloopt de SEO-migratie van de bestaande URL's</span></li>
-      <li><span class="q-text">Wie is de vaste contactpersoon en het projectteam</span></li>
-      <li><span class="q-text">Welke input verwachten jullie van KAAP en op welk moment</span></li>
-      <li><span class="q-text">Hoe wordt eigenaarschap van code, content en toegangen geregeld</span></li>
-      <li><span class="q-text">Wat is de garantie- en supportregeling na livegang</span></li>
+    <ul class="vragen-list">
+      <li>Welke tech-stack stellen jullie voor en waarom past die bij deze scope</li>
+      <li>Hoe pakken jullie de Bisner-integratie technisch aan</li>
+      <li>Hoe verloopt de SEO-migratie van de bestaande URL's</li>
+      <li>Wie is de vaste contactpersoon en het projectteam</li>
+      <li>Welke input verwachten jullie van KAAP en op welk moment</li>
+      <li>Hoe wordt eigenaarschap van code, content en toegangen geregeld</li>
+      <li>Wat is de garantie- en supportregeling na livegang</li>
     </ul>
   </div>
 </section>
@@ -1123,10 +799,6 @@
       <h4>Contact</h4>
       <p>Jorik Schut<br/>Innovatiepunt KAAP</p>
     </div>
-    <div>
-      <h4>Reactie graag voor</h4>
-      <p>Datum in te vullen<br/>Per mail of in een vervolggesprek</p>
-    </div>
     <div class="right">
       Briefing nieuwe website<br/>
       Innovatiepunt KAAP, 2026
@@ -1134,239 +806,6 @@
   </div>
 </footer>
 
-<!-- ACTION BAR -->
-<div class="action-bar">
-  <div class="ab-counters">
-    <div class="group mvp"><span class="num" id="ab-mvp">0</span><span>MVP</span></div>
-    <div class="group f2"><span class="num" id="ab-f2">0</span><span>Fase 2</span></div>
-    <div class="group skip"><span class="num" id="ab-skip">0</span><span>Geschrapt</span></div>
-  </div>
-  <div class="ab-actions">
-    <button type="button" id="btn-reset" title="Alle keuzes terug naar default" aria-label="Selecties resetten">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
-      <span>Reset</span>
-    </button>
-    <button type="button" id="btn-sync" class="primary" aria-label="Selecties syncen naar live URL">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M3 21v-5h5"/></svg>
-      <span>Sync naar live URL</span>
-    </button>
-  </div>
-</div>
-
-<div class="toast" id="toast" role="status" aria-live="polite">Gekopieerd</div>
-
-<script>
-(() => {
-  'use strict';
-
-  const STORAGE_KEY = 'kaap-briefing-selection-v1';
-  const baked = window.__BAKED_DEFAULTS__ || {};
-
-  const $  = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-
-  const slug = (s) => s
-    .toLowerCase()
-    .normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 80);
-
-  const escape = (s) => String(s)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-
-  const loadState = () => {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-    catch { return {}; }
-  };
-  const saveState = (s) => localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
-
-  let state = loadState();
-  const items = [];
-
-  // Toast
-  const toastEl = $('#toast');
-  let toastTimer;
-  const toast = (msg) => {
-    toastEl.textContent = msg;
-    toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
-  };
-
-  // Selectable items: drie-staat toggle (MVP / Fase 2 / Niet doen)
-  $$('[data-default]').forEach(group => {
-    const groupDefault = group.dataset.default;
-
-    $$('li.selectable', group).forEach(li => {
-      const text = li.querySelector('.item-text').textContent.trim();
-      const cat = li.dataset.cat || 'Overig';
-      const id = `${slug(cat)}__${slug(text)}`;
-      const fromBaked = baked[id];
-      const itemDefault = (fromBaked && fromBaked !== 'removed') ? fromBaked : groupDefault;
-
-      li.dataset.id = id;
-      li.dataset.default = itemDefault;
-      li.dataset.state = state[id] || itemDefault;
-      items.push({ el: li, id, cat, text, default: itemDefault });
-
-      const toggle = document.createElement('div');
-      toggle.className = 'item-toggle';
-      toggle.setAttribute('role', 'group');
-      toggle.setAttribute('aria-label', `Status: ${text}`);
-      toggle.innerHTML = `
-        <button type="button" class="t-mvp"  data-set="mvp"   aria-label="In MVP">MVP</button>
-        <button type="button" class="t-f2"   data-set="fase2" aria-label="Naar Fase 2">F2</button>
-        <button type="button" class="t-skip" data-set="skip"  aria-label="Niet doen">&mdash;</button>
-      `;
-      li.appendChild(toggle);
-
-      const buttons = $$('button', toggle);
-      const apply = (next) => {
-        li.dataset.state = next;
-        state[id] = next;
-        buttons.forEach(b => b.classList.toggle('active', b.dataset.set === next));
-        saveState(state);
-        update();
-      };
-      buttons.forEach(b => {
-        b.classList.toggle('active', b.dataset.set === li.dataset.state);
-        b.addEventListener('click', () => apply(b.dataset.set));
-      });
-    });
-  });
-
-  // Removable questions
-  $$('#vragen-list li').forEach((li, idx) => {
-    const text = li.querySelector('.q-text').textContent.trim();
-    const id = `vraag__${idx}__${slug(text)}`;
-    li.dataset.id = id;
-
-    const startRemoved = state[id] === 'removed'
-      || (state[id] === undefined && baked[id] === 'removed');
-    if (startRemoved) li.dataset.removed = 'true';
-
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'q-remove';
-
-    const render = (removed) => {
-      btn.innerHTML = removed ? '+' : '&times;';
-      const label = removed ? 'Vraag terugzetten' : 'Vraag verwijderen';
-      btn.title = label;
-      btn.setAttribute('aria-label', label);
-      btn.classList.toggle('restore', removed);
-    };
-    render(startRemoved);
-
-    btn.addEventListener('click', () => {
-      const removed = li.dataset.removed === 'true';
-      if (removed) { delete li.dataset.removed; delete state[id]; }
-      else { li.dataset.removed = 'true'; state[id] = 'removed'; }
-      render(!removed);
-      saveState(state);
-    });
-    li.appendChild(btn);
-  });
-
-  // Items naar Fase 2 verschoven uit MVP-eisen worden in sectie 04 gespiegeld
-  const renderMirror = () => {
-    const target = $('#f2-mirror');
-    if (!target) return;
-
-    const groups = {};
-    for (const { el, cat, text } of items) {
-      if (el.dataset.state !== 'fase2' || cat === 'Doorontwikkeling') continue;
-      (groups[cat] ||= []).push(text);
-    }
-
-    const cats = Object.keys(groups);
-    if (!cats.length) {
-      target.innerHTML = '';
-      target.classList.remove('has-items');
-      return;
-    }
-
-    target.innerHTML =
-      '<div class="f2-mirror-title">Vanuit MVP-eisen verschoven</div>' +
-      cats.map(cat => `
-        <div class="f2-mirror-group">
-          <div class="f2-mirror-group-label">${escape(cat)}</div>
-          <ul class="f2-mirror-list">
-            ${groups[cat].map(t => `<li class="f2-mirror-item">${escape(t)}</li>`).join('')}
-          </ul>
-        </div>
-      `).join('');
-    target.classList.add('has-items');
-  };
-
-  const update = () => {
-    const counts = { mvp: 0, fase2: 0, skip: 0 };
-    for (const { el } of items) counts[el.dataset.state]++;
-
-    const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-    setText('ab-mvp',   counts.mvp);
-    setText('ab-f2',    counts.fase2);
-    setText('ab-skip',  counts.skip);
-    setText('stat-mvp', counts.mvp);
-    setText('stat-f2',  counts.fase2);
-    setText('stat-skip',counts.skip);
-
-    renderMirror();
-  };
-  update();
-
-  $('#btn-reset').addEventListener('click', () => {
-    if (!confirm('Alle keuzes terugzetten naar de huidige defaults van de live versie?')) return;
-    state = {};
-    saveState(state);
-
-    for (const it of items) {
-      it.el.dataset.state = it.default;
-      $$('.item-toggle button', it.el).forEach(b =>
-        b.classList.toggle('active', b.dataset.set === it.default)
-      );
-    }
-    $$('#vragen-list li').forEach(li => {
-      delete li.dataset.removed;
-      const btn = li.querySelector('.q-remove');
-      if (btn) {
-        btn.innerHTML = '&times;';
-        btn.title = 'Vraag verwijderen';
-        btn.setAttribute('aria-label', 'Vraag verwijderen');
-        btn.classList.remove('restore');
-      }
-    });
-    update();
-  });
-
-  // Sync: alleen verschillen t.o.v. de huidige live-defaults worden meegestuurd
-  $('#btn-sync').addEventListener('click', async () => {
-    const delta = {};
-    for (const it of items) {
-      if (it.el.dataset.state !== it.default) delta[it.id] = it.el.dataset.state;
-    }
-    $$('#vragen-list li').forEach(li => {
-      if (li.dataset.removed === 'true') delta[li.dataset.id] = 'removed';
-    });
-
-    const payload = [
-      'KAAP-BRIEFING-SYNC',
-      'Selecties voor live URL update:',
-      '',
-      JSON.stringify(delta, null, 2),
-    ].join('\n');
-
-    try {
-      await navigator.clipboard.writeText(payload);
-      toast('Gekopieerd, plak in chat met Claude');
-    } catch {
-      window.prompt('Kopieer onderstaande tekst:', payload);
-    }
-  });
-})();
-</script>
 
 </body>
 </html>
