@@ -234,6 +234,28 @@
     width: 10px; height: 2px;
     background: var(--kaap-pink);
   }
+  .req-item ul li.is-fase2 {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .req-item ul li.is-fase2::before {
+    background: var(--kaap-purple);
+    opacity: 0.55;
+  }
+  .phase-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(141, 115, 218, 0.18);
+    color: var(--kaap-purple);
+    border-radius: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
 
   /* SCOPE-AFBAKENING / FASE 2 */
   .scope-card {
@@ -589,6 +611,7 @@
           <li>Events / agenda</li>
           <li>Reserveren ruimte</li>
           <li>Projecten</li>
+          <li class="is-fase2">Vacatures<span class="phase-tag">Fase 2</span></li>
           <li>Partners en samenwerkingen</li>
           <li>Contact</li>
         </ul>
@@ -602,6 +625,7 @@
           <li>Behoefte-gerichte ingang per doelgroep, ondernemers, onderwijs en overheid ("Ik wil ruimte huren", "Ik wil partner worden", etc.)</li>
           <li>Visuele presentatie, geen tekstsite meer</li>
           <li>Onderscheid tussen de drie transitiethema's: Energy, Food, Water</li>
+          <li class="is-fase2">Mogelijkheid om nieuwe transitiethema's toe te voegen via het CMS<span class="phase-tag">Fase 2</span></li>
           <li>Onderscheid tussen de drie kernactiviteiten: faciliteren, bewustwording, verbinden</li>
         </ul>
       </div>
@@ -622,7 +646,9 @@
         <ul>
           <li>Content eenvoudig aanpasbaar zonder technische kennis</li>
           <li>Pagina's zelfstandig kunnen toevoegen</li>
+          <li class="is-fase2">Rollen en rechten, onderscheid medewerker en stagiair<span class="phase-tag">Fase 2</span></li>
           <li>Mediabibliotheek met afbeeldingsbeheer</li>
+          <li class="is-fase2">Revisiegeschiedenis op pagina-niveau<span class="phase-tag">Fase 2</span></li>
         </ul>
       </div>
 
@@ -631,6 +657,7 @@
         <h3>Technisch fundament</h3>
         <ul>
           <li>Volledig responsive, 360px tot desktop</li>
+          <li class="is-fase2">Basis-SEO, metadata, sitemap, structured data<span class="phase-tag">Fase 2</span></li>
           <li>Analytics-koppeling, Google Analytics en Search Console</li>
           <li>SEO-migratie van bestaande URL's</li>
           <li>Hosting, back-ups en monitoring meegenomen in voorstel</li>
@@ -655,13 +682,6 @@
       <p>Op basis van gebruik, feedback en nieuwe wensen na livegang.</p>
 
       <div class="f2-list">
-        <div class="f2-group">
-          <div class="f2-group-label">Bisner-koppeling</div>
-          <ul>
-            <li>Doorklikken naar Bisner voor inschrijving en boeking, in eerste instantie via een directe link, in Fase 2 ingebouwd</li>
-          </ul>
-        </div>
-
         <div class="f2-group">
           <div class="f2-group-label">Basispagina's</div>
           <ul>
